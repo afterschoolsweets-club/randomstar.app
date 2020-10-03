@@ -1,0 +1,26 @@
+body{font-size: 0.85rem !important;}
+
+abbr{cursor: help;}
+
+table,th,tr,td{border: 1px solid #000000;}
+
+#calcform{
+text-align: center;
+font-size: 1.25rem;
+margin-bottom: 1.25em;
+}
+
+#cal_year{width: 4em;}
+
+#list_feasts_moveable,#list_feasts_fixed,#list_feasts_kr,#info_detail{
+width: 30em;
+margin: auto;
+overflow: auto;
+text-align: center;
+}
+
+#date_goodfriday{text-decoration: underline;}
+
+#date_eastersunday{font-weight: bold;}
+
+.alter_name{font-size: 0.7rem;}

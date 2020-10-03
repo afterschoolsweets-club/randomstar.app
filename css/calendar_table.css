@@ -1,0 +1,12 @@
+#cal_table{overflow: auto;}
+
+#cal_monthname{
+text-align: center;
+margin: auto;
+}
+
+table,th,tr,td{
+padding: 0 1em;
+text-align: center;
+border: 1px solid #000000;
+}

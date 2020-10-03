@@ -1,0 +1,79 @@
+body{
+font-family: "Noto Sans KR", "Roboto", sans-serif;
+background-color: #FAFAFA;
+line-height: 1.73;
+}
+
+span{
+color: #282828;
+text-decoration: none;
+}
+    
+a:link{
+color: #BB0011;
+text-decoration: none;
+}
+a:active{
+color: #CCCCCC;
+text-decoration: none;
+}
+a:visited{
+color: #777777;
+text-decoration: none;
+}
+a:hover{
+color: #AAAAAA;
+text-decoration: none;
+}
+    
+blockquote{font-family: "Courier New"}
+    
+abbr{cursor: help;}
+    
+table,th,tr,td{border-collapse: collapse;}
+    
+ul, ol{
+margin-left: -1.25em;
+margin-right: 1em;
+font-size: 13px;
+line-height: 1.35;
+}
+    
+.nonmarker{list-style-type: none;}
+    
+.notyetavail{color: #DEDEDE;}
+ 
+.fonts_small{font-size: 72%;}
+    
+.icon_links{margin: 0.5em;}
+    
+#copyright{
+text-align: center;
+font-size: 0.875em;
+}
+
+#page_b{
+font-size: 0.8rem;
+margin: auto;
+display: table;
+position: relative;
+}
+#serverlist{
+display: table-cell;
+vertical-align: middle;
+}
+
+.vpn_status{display: inline-block;}
+
+.vpn_status table,th,tr,td{
+padding: 0 1em;
+text-align: center;
+border: 1px solid #000000;
+}
+       
+@media ( max-width: 720px ){
+.vpn_status{
+margin: auto;
+display: block;
+}
+}

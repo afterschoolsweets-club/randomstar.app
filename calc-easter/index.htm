@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<title>부활절 날짜 계산 (가톨릭 교회)</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0, width=device-width" />
+<link rel="stylesheet" href="/css/w3.css" />
+<link rel="stylesheet" href="/css/common.css" />
+<link rel="stylesheet" href="easter_calc.css" />
+<script type="text/javascript" src="easter_calc.js"></script>
+</head>
+<body onload="initPage();">
+
+
+<h1 style="text-align: center;">부활절(부활 대축일) 날짜 계산기</h1>
+
+
+<h3 style="text-align: center;">일러두기</h3>
+
+<ul>
+ <li>아래 표기된 각 축일들의 목록과 명칭은 <a href="http://www.cbck.or.kr/">한국 천주교 주교회의</a> 전례위원회가 발행하는 <b>가톨릭 로마 보편 전례력(Calendarium Romanum Generale)</b>의 <a href="http://missa.cbck.or.kr/liturgy.asp">한국어판</a>을 기준으로 했습니다.</li>
+ <li>부활 대축일의 날짜 산정 방식은 <b>서기 325년 6월</b>에 개최된 <a href="http://home.catholic.or.kr/pds/bbs_view.asp?num=50&amp;id=119283&amp;SORT=R&amp;menu=4817">제1차 니케아 공의회</a>에서 합의된 사항을 기초로 하고 있으므로, 이 프로그램에서는 서기 326년 이후의 날짜만 표기합니다.</li>
+ <li>축일 목록에서 <b>굵은 글씨</b>로 표기된 축일은 <b>의무 대축일(Holy Day of Obligation)</b>이며, 미사 참례의 의무가 있습니다.</li>
+ <li>그레고리력의 최초 도입 시기인 서기 1582년 10월 이전의 양력 날짜는 율리우스력을, 그 이후의 날짜는 그레고리력을 기준으로 합니다.</li>
+ <li>음력에 기반한 날짜 및 기타 사항들은 서기 1583년부터 2100년까지의 계산 결과에만 표기됩니다.</li>
+ <li>이 프로그램의 계산 결과는 <b>정확하지 않을 수 있으며</b>, 각 축일들의 실제 날짜는 <u>지역이나 수도회, 교구의 사정에 따라 다를 수 있으므로</u> 정확한 날짜는 <b>각 교구 및 본당에서 발행하는 전례력</b>을 참고하세요.</li>
+ <li>이 프로그램은 <b>평신도 개인이 만든 것</b>으로 위에서 언급한 단체들과는 <u>직접적인 관련이 없음</u>을 밝힙니다.</li>
+</ul>
+
+
+<hr style="width: 100%;" />
+
+
+<div id="calcform">
+<h3>서기 <input type="number" max="10000" id="cal_year" onchange="easterCalc.calcFeasts();" />년의 전례력 주요 날짜</h3>
+<input type="button" value="-10년" onclick="easterCalc.adjustYear(-10);" />&nbsp;<input type="button" value="-1년" onclick="easterCalc.adjustYear(-1);" />&nbsp;<input type="button" value="올해" onclick="easterCalc.setToYearNow();" />&nbsp;<input type="button" value="+1년" onclick="easterCalc.adjustYear(1);" />&nbsp;<input type="button" value="+10년" onclick="easterCalc.adjustYear(10);" />
+</div>
+
+
+<h3 style="text-align: center;">매년 날짜가 바뀌는 주요 전례력 일정</h3>
+
+<table id="list_feasts_moveable">
+<tr><th>축일명</th><th>날짜</th></tr>
+<tr><td>주님 공현 대축일</td><td id="date_epiphany">--</td></tr>
+<tr><td>주님 세례 축일</td><td id="date_baptismfeast">--</td></tr>
+<tr><td>재의 수요일</td><td id="date_ashwednesday">--</td></tr>
+<tr><td>사순 제1주일</td><td id="date_quadragesima">--</td></tr>
+<tr><td>사순 제4주일</td><td id="date_midlentsunday">--</td></tr>
+<tr><td>주님 수난 성지 주일</td><td id="date_palmsunday">--</td></tr>
+<tr><td>주님 만찬 성 목요일</td><td id="date_holythursday">--</td></tr>
+<tr><td><u>주님 수난 성 금요일</u></td><td id="date_goodfriday">--</td></tr>
+<tr><td>성 토요일 (부활 성야)</td><td id="date_holysaturday">--</td></tr>
+<tr><td><b>주님 부활 대축일</b></td><td id="date_eastersunday">--</td></tr>
+<tr><td>부활 제4주일 (성소 주일)</td><td id="date_easter4thsunday">--</td></tr>
+<tr><td>주님 승천 대축일 (주일)</td><td id="date_ascensionsunday">--</td></tr>
+<tr><td>성령 강림 대축일</td><td id="date_pentecost">--</td></tr>
+<tr><td>삼위일체 대축일</td><td id="date_trinitysunday">--</td></tr>
+<tr><td>성체 성혈 대축일 (주일)</td><td id="date_corpuschristi">--</td></tr>
+<tr><td>예수 성심 대축일 (금요일)</td><td id="date_sacredheart">--</td></tr>
+<tr><td>그리스도 왕 대축일</td><td id="date_christtheking">--</td></tr>
+<tr><td><u>대림 제1주일 (전례력 새해)</u></td><td id="date_adventsunday">--</td></tr>
+<tr><td>대림 제4주일</td><td id="date_lastadvent">--</td></tr>
+<tr><td>성탄 팔일축제 내 주일</td><td id="date_christmasoctavesunday">--</td></tr>
+</table>
+
+<h3 style="text-align: center;">날짜가 고정된 주요 전례력 일정 (양력 기준)</h3>
+
+<table id="list_feasts_fixed">
+<tr><th width="50%">축일명</th><th width="20%">날짜</th><th width="10%">요일</th><th width="20%">부활 대축일 기준</th></tr>
+<tr><td><b>천주의 성모 마리아 대축일</b><br /><span class="alter_name">(Solemnity of Mary, Mother of God)</span></td><td>1월 1일</td><td id="weekday_101"></td><td id="easteroffset_101"></td></tr>
+<tr><td>성 요셉 대축일<br /><span class="alter_name">(Saint Joseph's Day)</span></td><td>3월 19일</td><td id="weekday_319"></td><td id="easteroffset_319"></td></tr>
+<tr><td>성 베드로와 바오로 사도 대축일<br /><span class="alter_name">(Feast of Saints Peter and Paul)</span></td><td>6월 29일</td><td id="weekday_629"></td><td id="easteroffset_629"></td></tr>
+<tr><td><b>성모 승천 대축일</b><br /><span class="alter_name">(Feast of the Assumption)</span></td><td>8월 15일</td><td id="weekday_815"></td><td id="easteroffset_815"></td></tr>
+<tr><td><abbr title="성 미카엘, 성 가브리엘, 성 라파엘">3대 대천사</abbr> 축일<br /><span class="alter_name">(Michaelmas)</span></td><td>9월 29일</td><td id="weekday_929"></td><td id="easteroffset_929"></td></tr>
+<tr><td>모든 성인 대축일<br /><span class="alter_name">(All Saints' Day)</span></td><td>11월 1일</td><td id="weekday_1101"></td><td id="easteroffset_1101"></td></tr>
+<tr><td><b>주님 성탄 대축일</b><br /><span class="alter_name">(Christmas, the Nativity of Jesus)</span></td><td>12월 25일</td><td id="weekday_1225"></td><td id="easteroffset_1225"></td></tr>
+</table>
+
+<h3 style="text-align: center;">한국 고유 주요 전례력 일정</h3>
+
+<table id="list_feasts_kr">
+<tr><th>축일명</th><th>날짜</th><th>요일</th></tr>
+<tr><td>설 (음력 1월 1일)</td><td id="lunar_newyear"></td><td id="weekday_lunarnewyear"></td></tr>
+<tr><td>한가위/추석 (음력 8월 15일)</td><td id="lunar_thanksgiving"></td><td id="weekday_lunarthanksgiving"></td></tr>
+</table>
+
+<hr style="width: 100%;" />
+
+<h3 style="text-align: center;">서기 <span id="year_detail"></span>의 상세 정보</h3>
+
+<table id="info_detail">
+<tr><th width="55%">윤년 여부</td><td id="year_type"></td></tr>
+<tr><th>주일 문자 (Dominical Letter)</th><td id="dominical_yearletter"></td></tr>
+<tr><th>주일/축일 독서 (한국 가톨릭)</th><td id="korean_yearletter"></td></tr>
+<tr><th>그레고리력(서방 교회)과 율리우스력(동방 교회)의 날짜 차이</td><td id="solar_offset"></td></tr>
+<tr><th>춘분 이후 첫 보름달</td><td id="full_moon"></td></tr>
+<tr><th>부활 대축일 당일의 월령(月齡)</td><td id="lunar_age"></td></tr>
+<tr><th>부활 대축일 당일의 음력 날짜</td><td id="lunar_easter"></td></tr>
+<tr><th>부활 대축일 당일의 율리우스 적일(積日)</td><td id="julianday_easter"></td></tr>
+<tr><th>유월절(유다 달력)의 양력 날짜</td><td id="date_passover"></td></tr>
+</table>
+
+<hr style="width: 100%;" />
+
+</body>
+</html>

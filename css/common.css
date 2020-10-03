@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap');
+
+body{
+font-family: "Noto Sans KR", "Nanum Gothic", sans-serif;
+background-color: #FAFAFA;
+line-height: 1.73;
+}
+
+span{
+color: #282828;
+text-decoration: none;
+}
+
+a:link{
+color: #BB0011;
+text-decoration: none;
+}
+a:active{
+color: #CCCCCC;
+text-decoration: none;
+}
+a:visited{
+color: #777777;
+text-decoration: none;
+}
+a:hover{
+color: #AAAAAA;
+text-decoration: none;
+}
+
+blockquote{
+font-family: "Courier New"
+}
+
+abbr{cursor: help;}
+
+table,th,tr,td{border-collapse: collapse;}
+
+ul, ol{
+margin-left: -1.25em;
+margin-right: 1em;
+font-size: 13px;
+line-height: 1.35;
+}
+
+.nonmarker{list-style-type: none;}
+
+.notyetavail{color: #DEDEDE;}
+
+.fonts_small{font-size: 72%;}
+
+.icon_links{margin: 0.5em;}
+
+#copyright{
+text-align: center;
+font-size: 0.875em;
+}
+
+#headtext{
+text-align: center;
+background-color: #F5F8FA;
+padding-top: 1em;
+padding-bottom: 1em;
+border-radius: 1.4em;
+}
+
+label{font-size: 80%;}
+
+.uinotes{font-size: 9px;}
+
+#a_main{
+text-align: center;
+margin: auto;
+}
