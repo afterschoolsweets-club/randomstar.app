@@ -40,6 +40,7 @@ abbr{cursor: help;}
 
 #containerbody{
  padding: 1em 2em;
+ overflow: auto;
  background-color: #ffffff;
 }
 
