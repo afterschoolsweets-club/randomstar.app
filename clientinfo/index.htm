@@ -11,23 +11,24 @@
  <body id="mainbody" onload="clientInfo.showInfo();">
   <div id="containerbody">
    <h2>현재 접속된 IP 주소 정보 (Informations about Your IP Address)</h2>
-   <table style="font-size: 0.875em; margin: auto; text-align: center;">
-    <tr><th class="tb_item">IP 주소 (Address)</th></tr>
-    <tr><td><span id="client_address" style="font-weight: bold;">Loading...</span>&nbsp;<sup id="address_version"></sup></td></tr>
+   <div style="overflow: auto;">
+    <table style="font-size: 0.875em; margin: auto; text-align: center;">
+     <tr><th class="tb_item">IP 주소 (Address)</th></tr>
+     <tr><td><span id="client_address" style="font-weight: bold;">Loading...</span>&nbsp;<sup id="address_version"></sup></td></tr>
 
-    <tr><th class="tb_item">국가명 (Country)</th></tr>
-    <tr><td><span id="country_flag"></span> <span id="country_name">Loading...</span></td></tr>
+     <tr><th class="tb_item">국가명 (Country)</th></tr>
+     <tr><td><span id="country_flag"></span> <span id="country_name">Loading...</span></td></tr>
 
-    <tr><th class="tb_item">대략적 위치 (Approximate Location)</th></tr>
-    <tr><td><span id="location_info">Loading...</span></td></tr>
+     <tr><th class="tb_item">대략적 위치 (Approximate Location)</th></tr>
+     <tr><td><span id="location_info">Loading...</span></td></tr>
 
-    <tr><th class="tb_item">회선 제공처 (Service Provider)</th>
-    <tr><td><span id="service_provider">Loading...</span></td></tr>
+     <tr><th class="tb_item">회선 제공처 (Service Provider)</th>
+     <tr><td><span id="service_provider">Loading...</span></td></tr>
 
-    <tr><th class="tb_item">브라우저 식별자 (User Agent)</th></tr>
-    <tr><td><span id="client_ua">Loading...</span></td></tr>
-   </table>
-
+     <tr><th class="tb_item">브라우저 식별자 (User Agent)</th></tr>
+     <tr><td><span id="client_ua">Loading...</span></td></tr>
+    </table>
+   </div>
    <p style="text-align: center;"><a href="javascript:;" onclick="clientInfo.showInfo();">새로고침 (Refresh)</a></p>
    <p style="text-align: center;">자료제공 (Source) : <a href="https://www.geojs.io/">GeoJS.io</a></p>
    <h3>면책 조항 (Disclaimers)</h3>
