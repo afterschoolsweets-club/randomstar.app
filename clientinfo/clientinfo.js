@@ -289,7 +289,11 @@ var clientInfo = {
      document.getElementById("location_info").innerHTML = "";
      document.getElementById("location_info").appendChild(phylocation_maplink);
      document.getElementById("service_provider").innerHTML = providerinfo;
-     document.getElementById("client_ua").innerHTML = navigator.userAgent;
+     if(navigator.userAgentData){ // UA Data: 크로미엄(Chromium) 기반 브라우저에서 시범 지원 (90 버전 이상)
+      var browserType = `${navigator.userAgentData.brands[0].brand} (Version ${navigator.userAgentData.brands[0].version})`;
+      var isMobile = (navigator.userAgentData.mobile == true) ? "Mobile" : "Desktop";
+      document.getElementById("client_ua").innerHTML = `${isMobile} ${browserType}`;
+     }else if(navigator.userAgent){document.getElementById("client_ua").innerHTML = navigator.userAgent;}
     }else{alert(`정보를 불러오던 도중 오류가 발생하였습니다. [${r.status}]\n잠시 후 다시 시도해보세요.\n\nAn error occured during load datas. [${r.status}]\nPlease try again later.`);}
    }
   };
