@@ -295,7 +295,7 @@ var clientInfo = {
       var browserType = `${browserBrand} (Version ${browserVersion})`;
       var isMobile = (navigator.userAgentData.mobile == true) ? "Mobile" : "Desktop";
       document.getElementById("client_ua").innerHTML = `${isMobile} ${browserType}`;
-     }else if(navigator.userAgent){document.getElementById("client_ua").innerHTML = navigator.userAgent;}
+     }else if(navigator.userAgent){document.getElementById("client_ua").innerHTML = navigator.userAgent;} // 이외의 경우
     }else{alert(`정보를 불러오던 도중 오류가 발생하였습니다. [${r.status}]\n잠시 후 다시 시도해보세요.\n\nAn error occured during load datas. [${r.status}]\nPlease try again later.`);}
    }
   };
