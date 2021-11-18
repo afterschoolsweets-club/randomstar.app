@@ -290,7 +290,7 @@ var clientInfo = {
      document.getElementById("location_info").appendChild(phylocation_maplink);
      document.getElementById("service_provider").innerHTML = providerinfo;
      if(navigator.userAgentData){ // UA Data: 크로미엄(Chromium) 기반 브라우저에서 시범 지원 (90 버전 이상)
-      var browserType = `${navigator.userAgentData.brands[0].brand} (Version ${navigator.userAgentData.brands[0].version})`;
+      var browserType = `${navigator.userAgentData.brands[2].brand} (Version ${navigator.userAgentData.brands[2].version})`;
       var isMobile = (navigator.userAgentData.mobile == true) ? "Mobile" : "Desktop";
       document.getElementById("client_ua").innerHTML = `${isMobile} ${browserType}`;
      }else if(navigator.userAgent){document.getElementById("client_ua").innerHTML = navigator.userAgent;}
