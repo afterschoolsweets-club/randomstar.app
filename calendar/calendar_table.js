@@ -152,7 +152,7 @@ function drawCalendarTable(year,month,drawPositionTable,drawPositionMonth){
       dateDisplay.title = koreanSolarPublicHolidayNames[dateChecksum];
      }
      // 대체휴일 처리
-     if(((dateChecksum == 506) && q == 2) || ((dateChecksum == 507) && q == 2)){
+     if((((dateChecksum-1) in koreanSolarPublicHolidays) || ((dateChecksum-2) in koreanSolarPublicHolidays)) && q == 2){
       dateDisplay.style.color="#FF0000";
       dateDisplay.style.cursor = "help";
       dateDisplay.style.fontWeight = "bold";
