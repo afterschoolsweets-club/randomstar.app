@@ -290,11 +290,20 @@ var clientInfo = {
      document.getElementById("location_info").appendChild(phylocation_maplink);
      document.getElementById("service_provider").innerHTML = providerinfo;
      if(navigator.userAgentData){ // UA Data: 크로미엄(Chromium) 기반 브라우저에서 시범 지원 (90 버전 이상)
-      var browserBrand = (navigator.userAgentData.brands[0].brand.toLowerCase().indexOf("not a") < 0) ? navigator.userAgentData.brands[0].brand : navigator.userAgentData.brands[2].brand;
-      var browserVersion = (navigator.userAgentData.brands[0].brand.toLowerCase().indexOf("not a") < 0) ? navigator.userAgentData.brands[0].version : navigator.userAgentData.brands[2].version;
-      var browserType = `${browserBrand} (Version ${browserVersion})`;
+      var brandInfo = navigator.userAgentData.brands;
+      var browserBrand, browserVersion, browserType;
+      for(b=0;b<brandInfo.length;b++){
+       if(brandInfo[b].brand.indexOf("not a") != -1){continue;}
+       else{
+        browserBrand = brandInfo[b].brand;
+        browserVersion = brandInfo[b].version;
+        browserType += `${browserBrand} (Version ${browserVersion})`;
+        browserType += "; ";
+       }
+      }
+      
       var isMobile = (navigator.userAgentData.mobile == true) ? "Mobile" : "Desktop";
-      document.getElementById("client_ua").innerHTML = `${isMobile} ${browserType}`;
+      document.getElementById("client_ua").innerHTML = `${isMobile} -- ${browserType}`;
      }else if(navigator.userAgent){document.getElementById("client_ua").innerHTML = navigator.userAgent;} // 이외의 경우
     }else{alert(`정보를 불러오던 도중 오류가 발생하였습니다. [${r.status}]\n잠시 후 다시 시도해보세요.\n\nAn error occured during load datas. [${r.status}]\nPlease try again later.`);}
    }
