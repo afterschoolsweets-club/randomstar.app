@@ -291,7 +291,8 @@ var clientInfo = {
      document.getElementById("service_provider").innerHTML = providerinfo;
      if(navigator.userAgentData){ // UA Data: 크로미엄(Chromium) 기반 브라우저에서 시범 지원 (90 버전 이상)
       var brandInfo = navigator.userAgentData.brands;
-      var browserBrand, browserVersion, browserType;
+      var browserBrand, browserVersion;
+      var browserType = "";
       for(b=0;b<brandInfo.length;b++){
        if(brandInfo[b].brand.toLowerCase().indexOf("not a") != -1){continue;}
        else{
