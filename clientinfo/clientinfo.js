@@ -299,7 +299,7 @@ var clientInfo = {
         browserBrand = brandInfo[b].brand;
         browserVersion = brandInfo[b].version;
         browserType += `${browserBrand} (Version ${browserVersion})`;
-        browserType += "/";
+        if(b < (brandInfo.length-1)){browserType += "/";}
        }
       }
 
