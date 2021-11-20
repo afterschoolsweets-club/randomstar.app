@@ -293,15 +293,15 @@ var clientInfo = {
       var brandInfo = navigator.userAgentData.brands;
       var browserBrand, browserVersion, browserType;
       for(b=0;b<brandInfo.length;b++){
-       if(brandInfo[b].brand.indexOf("not a") != -1){continue;}
+       if(brandInfo[b].brand.toLowerCase().indexOf("not a") != -1){continue;}
        else{
         browserBrand = brandInfo[b].brand;
         browserVersion = brandInfo[b].version;
         browserType += `${browserBrand} (Version ${browserVersion})`;
-        browserType += "; ";
+        browserType += "/";
        }
       }
-      
+
       var isMobile = (navigator.userAgentData.mobile == true) ? "Mobile" : "Desktop";
       document.getElementById("client_ua").innerHTML = `${isMobile} -- ${browserType}`;
      }else if(navigator.userAgent){document.getElementById("client_ua").innerHTML = navigator.userAgent;} // 이외의 경우
