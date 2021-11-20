@@ -295,12 +295,10 @@ var clientInfo = {
       var browserType = "";
       for(b=0;b<brandInfo.length;b++){
        if(brandInfo[b].brand.toLowerCase().indexOf("not a") != -1){continue;}
-       else{
-        browserBrand = brandInfo[b].brand;
-        browserVersion = brandInfo[b].version;
-        browserType += `${browserBrand} (Version ${browserVersion})`;
-       }
-       if(b != (brandInfo.length-1)){browserType += "/";}
+       browserBrand = brandInfo[b].brand;
+       browserVersion = brandInfo[b].version;
+       browserType += `${browserBrand} (Version ${browserVersion})`;
+       if(b < (brandInfo.length-1)){browserType += "/";}
       }
 
       var isMobile = (navigator.userAgentData.mobile == true) ? "Mobile" : "Desktop";
