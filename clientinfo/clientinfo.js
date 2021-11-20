@@ -298,7 +298,7 @@ var clientInfo = {
        browserBrand = brandInfo[b].brand;
        browserVersion = brandInfo[b].version;
        browserType += `${browserBrand} (Version ${browserVersion})`;
-       if(b < (brandInfo.length-1)){browserType += "/";}
+       if(b < (brandInfo.length-2)){browserType += "/";}
       }
 
       var isMobile = (navigator.userAgentData.mobile == true) ? "Mobile" : "Desktop";
