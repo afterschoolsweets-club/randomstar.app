@@ -298,11 +298,10 @@ var clientInfo = {
        browserBrand = brandInfo[b].brand;
        browserVersion = brandInfo[b].version;
        browserType += `${browserBrand} (Version ${browserVersion})`;
-       if(b < (brandInfo.length-2)){browserType += "/";}
+       browserType += "/";
       }
-
       var isMobile = (navigator.userAgentData.mobile == true) ? "Mobile" : "Desktop";
-      document.getElementById("client_ua").innerHTML = `${isMobile} ${browserType}`;
+      document.getElementById("client_ua").innerHTML = `${isMobile} ${browserType.slice(0,-1)}`;
      }else if(navigator.userAgent){document.getElementById("client_ua").innerHTML = navigator.userAgent;} // 이외의 경우
     }else{alert(`정보를 불러오던 도중 오류가 발생하였습니다. [${r.status}]\n잠시 후 다시 시도해보세요.\n\nAn error occured during load datas. [${r.status}]\nPlease try again later.`);}
    }
