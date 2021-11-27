@@ -151,16 +151,17 @@ function drawCalendarTable(year,month,drawPositionTable,drawPositionMonth){
     // 한국 공휴일 처리
     if(year >= 1948){
      let holidayDate = day;
+     let holidayChecksum = ((month + 1) * 100)+day;
      // 일반 공휴일
-     if(koreanSolarPublicHolidays.indexOf(dateChecksum) != -1){
+     if(koreanSolarPublicHolidays.indexOf(holidayChecksum) != -1){
       dateDisplay.style.color="#FF0000";
       dateDisplay.style.cursor = "help";
       dateDisplay.style.fontWeight = "bold";
-      dateDisplay.title = koreanSolarPublicHolidayNames[dateChecksum];
-      dateDisplay.addEventListener("click",function(){alert(`${month+1}월 ${holidayDate}일 : ${koreanSolarPublicHolidayNames[dateChecksum]}`);});
+      dateDisplay.title = koreanSolarPublicHolidayNames[holidayChecksum];
+      dateDisplay.addEventListener("click",function(){alert(`${month+1}월 ${holidayDate}일 : ${koreanSolarPublicHolidayNames[holidayChecksum]}`);});
      }
      // 일반 공휴일의 대체휴일 처리
-     if((koreanSolarPublicHolidays.indexOf(dateChecksum-1) != -1 || koreanSolarPublicHolidays.indexOf(dateChecksum-2) != -1) && q == 2){
+     if((koreanSolarPublicHolidays.indexOf(holidayChecksum-1) != -1 || koreanSolarPublicHolidays.indexOf(holidayChecksum-2) != -1) && q == 2){
       dateDisplay.style.color="#FF0000";
       dateDisplay.style.cursor = "help";
       dateDisplay.style.fontWeight = "bold";
@@ -168,13 +169,13 @@ function drawCalendarTable(year,month,drawPositionTable,drawPositionMonth){
       dateDisplay.addEventListener("click",function(){alert(`${month+1}월 ${holidayDate}일 : 대체휴일`);});
      }
      // 주요 선거(대통령/국회의원/지자체) 등의 법정 공휴일
-     var dateChecksumEx = (year * 10000)+((month + 1) * 100)+day;
-     if((dateChecksumEx in koreanProvisionalHolidays) === true){
+     let holidayChecksumEx = (year * 10000)+((month + 1) * 100)+day;
+     if((holidayChecksumEx in koreanProvisionalHolidays) === true){
       dateDisplay.style.color="#FF0000";
       dateDisplay.style.cursor = "help";
       dateDisplay.style.fontWeight = "bold";
-      dateDisplay.title = koreanProvisionalHolidays[dateChecksumEx];
-      dateDisplay.addEventListener("click",function(){alert(`${year}년 ${month+1}월 ${holidayDate}일 : ${koreanProvisionalHolidays[dateChecksumEx]}`);});
+      dateDisplay.title = koreanProvisionalHolidays[holidayChecksumEx];
+      dateDisplay.addEventListener("click",function(){alert(`${year}년 ${month+1}월 ${holidayDate}일 : ${koreanProvisionalHolidays[holidayChecksumEx]}`);});
      }
     }
      let lunarHolidayDate = day;
