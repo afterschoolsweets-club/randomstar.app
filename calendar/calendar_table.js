@@ -8,7 +8,7 @@ var fSize = "1.2em";
 
 var d_drawWidth = "14em";
 var d_drawHeight = "1.2em";
-var d_drawPadding = "0.5em";
+var d_drawPadding = "0.375em";
 var d_fSize = "3.25em";
 
 var baseLat = 37.5667;
