@@ -166,7 +166,7 @@ function drawCalendarTable(year,month,drawPositionTable,drawPositionMonth){
      }
      // 주요 선거(대통령/국회의원/지자체) 등의 법정 공휴일
      var dateChecksumEx = (year * 10000)+((month + 1) * 100)+day;
-     if(koreanProvisionalHolidays.indexOf(dateChecksumEx) != -1){
+     if((dateChecksumEx in koreanProvisionalHolidays) === true){
       dateDisplay.style.color="#FF0000";
       dateDisplay.style.cursor = "help";
       dateDisplay.style.fontWeight = "bold";
