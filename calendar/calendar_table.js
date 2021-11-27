@@ -150,13 +150,14 @@ function drawCalendarTable(year,month,drawPositionTable,drawPositionMonth){
 
     // 한국 공휴일 처리
     if(year >= 1948){
+     var holidayDate = day;
      // 일반 공휴일
      if(koreanSolarPublicHolidays.indexOf(dateChecksum) != -1){
       dateDisplay.style.color="#FF0000";
       dateDisplay.style.cursor = "help";
       dateDisplay.style.fontWeight = "bold";
       dateDisplay.title = koreanSolarPublicHolidayNames[dateChecksum];
-      dateDisplay.addEventListener("click",function(){alert(`${month+1}월 ${day}일 : ${koreanSolarPublicHolidayNames[dateChecksum]}`);});
+      dateDisplay.addEventListener("click",function(){alert(`${month+1}월 ${holidayDate}일 : ${koreanSolarPublicHolidayNames[dateChecksum]}`);});
      }
      // 일반 공휴일의 대체휴일 처리
      if((koreanSolarPublicHolidays.indexOf(dateChecksum-1) != -1 || koreanSolarPublicHolidays.indexOf(dateChecksum-2) != -1) && q == 2){
@@ -164,7 +165,7 @@ function drawCalendarTable(year,month,drawPositionTable,drawPositionMonth){
       dateDisplay.style.cursor = "help";
       dateDisplay.style.fontWeight = "bold";
       dateDisplay.title = "대체휴일";
-      dateDisplay.addEventListener("click",function(){alert(`${month+1}월 ${day}일 : 대체휴일`);});
+      dateDisplay.addEventListener("click",function(){alert(`${month+1}월 ${holidayDate}일 : 대체휴일`);});
      }
      // 주요 선거(대통령/국회의원/지자체) 등의 법정 공휴일
      var dateChecksumEx = (year * 10000)+((month + 1) * 100)+day;
@@ -173,26 +174,30 @@ function drawCalendarTable(year,month,drawPositionTable,drawPositionMonth){
       dateDisplay.style.cursor = "help";
       dateDisplay.style.fontWeight = "bold";
       dateDisplay.title = koreanProvisionalHolidays[dateChecksumEx];
-      dateDisplay.addEventListener("click",function(){alert(`${year}년 ${month+1}월 ${day}일 : ${koreanProvisionalHolidays[dateChecksumEx]}`);});
+      dateDisplay.addEventListener("click",function(){alert(`${year}년 ${month+1}월 ${holidayDate}일 : ${koreanProvisionalHolidays[dateChecksumEx]}`);});
      }
     }
+     var lunarHolidayDate = day;
      if(dayCount >= d_lunarholiday_01-1 && dayCount <= d_lunarholiday_01+1 && lunarDate[3] !== 1){
       dateDisplay.style.color="#FF0000";
       dateDisplay.style.cursor = "help";
       dateDisplay.style.fontWeight = "bold";
       dateDisplay.title = "설날";
+      dateDisplay.addEventListener("click",function(){alert(`${month+1}월 ${lunarHolidayDate}일 : 설날`);});
      }
      if(dayCount == d_lunarholiday_02 && lunarDate[3] !== 1){
       dateDisplay.style.color="#FF0000";
       dateDisplay.style.cursor = "help";
       dateDisplay.style.fontWeight = "bold";
       dateDisplay.title = "석가탄신일";
+      dateDisplay.addEventListener("click",function(){alert(`${month+1}월 ${lunarHolidayDate}일 : 석가탄신일`);});
      }
      if(dayCount >= d_lunarholiday_03-1 && dayCount <= d_lunarholiday_03+1 && lunarDate[3] !== 1){
       dateDisplay.style.color="#FF0000";
       dateDisplay.style.cursor = "help";
       dateDisplay.style.fontWeight = "bold";
       dateDisplay.title = "추석";
+      dateDisplay.addEventListener("click",function(){alert(`${month+1}월 ${lunarHolidayDate}일 : 추석`);});
      }
     day++;
    }
