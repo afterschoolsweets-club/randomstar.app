@@ -64,7 +64,7 @@ function drawCalendarTable(year,month,drawPositionTable,drawPositionMonth){
  var monthChecksum = (year * 100)+month;
  var dateOffset = Math.floor(year / 100)-Math.floor(year / 400)-2;
 
- if(monthChecksum <= 158209){firstWeekday=(firstWeekday+(dateOffset % 7)) % 7;}
+ if(monthChecksum <= 158209){firstWeekday=jwday(solar2JD(year,month+1,1));}
 
  var lastDayByMonth = [31,0,31,30,31,30,31,31,30,31,30,31];
 
