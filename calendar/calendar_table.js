@@ -150,7 +150,7 @@ function drawCalendarTable(year,month,drawPositionTable,drawPositionMonth){
 
     // 한국 공휴일 처리
     if(year >= 1948){
-     var holidayDate = day;
+     let holidayDate = day;
      // 일반 공휴일
      if(koreanSolarPublicHolidays.indexOf(dateChecksum) != -1){
       dateDisplay.style.color="#FF0000";
@@ -177,7 +177,7 @@ function drawCalendarTable(year,month,drawPositionTable,drawPositionMonth){
       dateDisplay.addEventListener("click",function(){alert(`${year}년 ${month+1}월 ${holidayDate}일 : ${koreanProvisionalHolidays[dateChecksumEx]}`);});
      }
     }
-     var lunarHolidayDate = day;
+     let lunarHolidayDate = day;
      if(dayCount >= d_lunarholiday_01-1 && dayCount <= d_lunarholiday_01+1 && lunarDate[3] !== 1){
       dateDisplay.style.color="#FF0000";
       dateDisplay.style.cursor = "help";
