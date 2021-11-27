@@ -1,7 +1,7 @@
 
 var drawPos = "cal_table";
 var drawPosMon = "cal_monthname";
-var drawWidth = "17.5em";
+var drawWidth = "15em";
 var drawHeight = "3em";
 var drawPadding = "0.25em";
 var fSize = "1.2em";
