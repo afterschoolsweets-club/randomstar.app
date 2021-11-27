@@ -31,6 +31,11 @@ var koreanSolarPublicHolidayNames = {
  1225 : "성탄절 (기독탄신일)"
 };
 
+var koreanProvisionalHolidays = {
+ 20220309 : "20대 대통령 선거",
+ 20220601 : "8차 지방선거"
+};
+
 var weekdayName = ["일","월","화","수","목","금","토"];
 
 // 페이지의 특정 부분 숨기기/보이기
@@ -145,18 +150,27 @@ function drawCalendarTable(year,month,drawPositionTable,drawPositionMonth){
 
     // 한국 공휴일 처리
     if(year >= 1948){
+     // 일반 공휴일
      if(koreanSolarPublicHolidays.indexOf(dateChecksum) != -1){
       dateDisplay.style.color="#FF0000";
       dateDisplay.style.cursor = "help";
       dateDisplay.style.fontWeight = "bold";
       dateDisplay.title = koreanSolarPublicHolidayNames[dateChecksum];
      }
-     // 대체휴일 처리
+     // 일반 공휴일의 대체휴일 처리
      if((koreanSolarPublicHolidays.indexOf(dateChecksum-1) != -1 || koreanSolarPublicHolidays.indexOf(dateChecksum-2) != -1) && q == 2){
       dateDisplay.style.color="#FF0000";
       dateDisplay.style.cursor = "help";
       dateDisplay.style.fontWeight = "bold";
       dateDisplay.title = "대체휴일";
+     }
+     // 주요 선거(대통령/국회의원/지자체) 등의 법정 공휴일
+     var dateChecksumEx = (year * 10000)+((month + 1) * 100)+day;
+     if(koreanProvisionalHolidays.indexOf(dateChecksumEx) != -1){
+      dateDisplay.style.color="#FF0000";
+      dateDisplay.style.cursor = "help";
+      dateDisplay.style.fontWeight = "bold";
+      dateDisplay.title = koreanProvisionalHolidays[dateChecksumEx];
      }
     }
      if(dayCount >= d_lunarholiday_01-1 && dayCount <= d_lunarholiday_01+1 && lunarDate[3] !== 1){
