@@ -156,6 +156,7 @@ function drawCalendarTable(year,month,drawPositionTable,drawPositionMonth){
       dateDisplay.style.cursor = "help";
       dateDisplay.style.fontWeight = "bold";
       dateDisplay.title = koreanSolarPublicHolidayNames[dateChecksum];
+      dateDisplay.addEventListener("click",function(){alert(`${month+1}월 ${day}일 : ${koreanSolarPublicHolidayNames[dateChecksum]}`);});
      }
      // 일반 공휴일의 대체휴일 처리
      if((koreanSolarPublicHolidays.indexOf(dateChecksum-1) != -1 || koreanSolarPublicHolidays.indexOf(dateChecksum-2) != -1) && q == 2){
@@ -163,6 +164,7 @@ function drawCalendarTable(year,month,drawPositionTable,drawPositionMonth){
       dateDisplay.style.cursor = "help";
       dateDisplay.style.fontWeight = "bold";
       dateDisplay.title = "대체휴일";
+      dateDisplay.addEventListener("click",function(){alert(`${month+1}월 ${day}일 : 대체휴일`);});
      }
      // 주요 선거(대통령/국회의원/지자체) 등의 법정 공휴일
      var dateChecksumEx = (year * 10000)+((month + 1) * 100)+day;
@@ -171,6 +173,7 @@ function drawCalendarTable(year,month,drawPositionTable,drawPositionMonth){
       dateDisplay.style.cursor = "help";
       dateDisplay.style.fontWeight = "bold";
       dateDisplay.title = koreanProvisionalHolidays[dateChecksumEx];
+      dateDisplay.addEventListener("click",function(){alert(`${year}년 ${month+1}월 ${day}일 : ${koreanProvisionalHolidays[dateChecksumEx]}`);});
      }
     }
      if(dayCount >= d_lunarholiday_01-1 && dayCount <= d_lunarholiday_01+1 && lunarDate[3] !== 1){
