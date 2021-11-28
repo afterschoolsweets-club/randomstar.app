@@ -4,7 +4,7 @@ var drawPosMon = "cal_monthname";
 var drawWidth = "15em";
 var drawHeight = "3em";
 var drawPadding = "0.125em";
-var fSize = "1em";
+var fSize = "0.875em";
 
 var d_drawWidth = "14em";
 var d_drawHeight = "1.2em";
