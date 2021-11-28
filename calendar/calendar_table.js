@@ -332,7 +332,9 @@ function showDateTimeNow(){
  lunarDateDisplay.style.fontSize = "1.2em";
  lunarDateDisplay.appendChild(document.createTextNode("음. "+isLunarLeap+" "+lunarMonthNow+"월 "+lunarDayNow+"일"));
  lunarDateDisplay.style.cursor = "help";
- lunarDateDisplay.title = sbYearNow+" "+sbMonthNow+" "+sbDayNow;
+ lunarDateDisplay.title = `${sbYearNow} ${sbMonthNow} ${sbDayNow}`;
+ lunarDateDisplay.addEventListener("click",function(){alert(`음력 간지 : ${sbYearNow} ${sbMonthNow} ${sbDayNow}`);});
+
  lunarDateRow.appendChild(lunarDateDisplay);
 
  dailyCalTable.appendChild(lunarDateRow);
