@@ -6,7 +6,7 @@ var drawHeight = "3em";
 var drawPadding = "0.125em";
 var fSize = "0.875em";
 
-var d_drawWidth = "14em";
+var d_drawWidth = "15em";
 var d_drawHeight = "1.2em";
 var d_drawPadding = "0.5em";
 var d_fSize = "3.25em";
