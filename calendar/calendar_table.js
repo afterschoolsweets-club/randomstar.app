@@ -340,7 +340,7 @@ function showDateTimeNow(){
  dailyCalTable.appendChild(lunarDateRow);
 
  var timeDisplay = document.createElement("td");
- timeDisplay.appendChild(document.createTextNode(hourNow+"시 "+minNow+"분 "+secNow+"초 (GMT"+timezoneDisplay+")"));
+ timeDisplay.appendChild(document.createTextNode(`${onedights(hourNow)}:${onedights(minNow)}:${onedights(secNow)} (GMT${timezoneDisplay})`));
  timeRow.appendChild(timeDisplay);
 
  dailyCalTable.appendChild(timeRow);
