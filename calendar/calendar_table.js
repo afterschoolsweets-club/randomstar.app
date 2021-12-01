@@ -20,6 +20,8 @@ var calYearRangeMax = 10000;
 
 var koreanSolarPublicHolidays = [101,301,505,606,815,1003,1009,1225];
 
+var koreanNationalDays = [301,815,1003,1009];
+
 var koreanSolarPublicHolidayNames = {
  101 : "신정",
  301 : "3.1절",
@@ -160,8 +162,8 @@ function drawCalendarTable(year,month,drawPositionTable,drawPositionMonth){
       dateDisplay.title = koreanSolarPublicHolidayNames[holidayChecksum];
       dateDisplay.addEventListener("click",function(){alert(`${month+1}월 ${holidayDate}일 : ${koreanSolarPublicHolidayNames[holidayChecksum]}`);});
      }
-     // 일반 공휴일의 대체휴일 처리
-     if((koreanSolarPublicHolidays.indexOf(holidayChecksum-1) != -1 || koreanSolarPublicHolidays.indexOf(holidayChecksum-2) != -1) && q == 2){
+     // 공휴일의 대체휴일 처리 (공휴일이면서 국경일인 경우에만 해당)
+     if((koreanNationalDays.indexOf(holidayChecksum-1) != -1 || koreanNationalDays.indexOf(holidayChecksum-2) != -1) && q == 2){
       dateDisplay.style.color="#FF0000";
       dateDisplay.style.cursor = "help";
       dateDisplay.style.fontWeight = "bold";
