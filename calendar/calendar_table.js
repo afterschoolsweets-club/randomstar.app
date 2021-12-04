@@ -412,12 +412,19 @@ function getCoordInfo(){
      if(r.readyState == 4){
       if(r.status == 200){
        var s = JSON.parse(r.responseText);
-       document.getElementById("coordinates_info").style.cursor = "help";
-       document.getElementById("coordinates_info").title = `현재 지역: ${s.address_full}`;
+       if((typeof s.address_full != "undefined") && (address_full != null)){
+        document.getElementById("coordinates_info").style.cursor = "help";
+        document.getElementById("coordinates_info").title = `현재 주소지: ${s.address_full} 인근`;
+        document.getElementById("coordinates_info").addEventListener("click",function(){alert(`현재 주소지: ${s.address_full} 인근`);});
+       }else{
+        document.getElementById("coordinates_info").style.cursor = "help";
+        document.getElementById("coordinates_info").title = `현재 주소지: 알 수 없음`;
+        document.getElementById("coordinates_info").addEventListener("click",function(){alert(`현재 주소지: 알 수 없음`);});
+       }
       }else{lert(`정보를 불러오던 도중 오류가 발생하였습니다. [${r.status}]\n잠시 후 다시 시도해보세요.`);}
      }
     };
-    
+
      coordLink_N = document.createElement("a");
      coordLink_N.href = "https://map.naver.com/";
      coordLink_N.appendChild(document.createTextNode("[네이버 지도 앱 열기]"));
