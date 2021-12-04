@@ -412,7 +412,7 @@ function getCoordInfo(){
      if(r.readyState == 4){
       if(r.status == 200){
        var s = JSON.parse(r.responseText);
-       if((typeof s.address_full != "undefined") && (address_full != null)){
+       if((typeof s.address_full != "undefined") && (s.address_full != null)){
         document.getElementById("coordinates_info").style.cursor = "help";
         document.getElementById("coordinates_info").title = `현재 주소지: ${s.address_full} 인근`;
         document.getElementById("coordinates_info").addEventListener("click",function(){alert(`현재 주소지: ${s.address_full} 인근`);});
