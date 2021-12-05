@@ -409,9 +409,9 @@ function getCoordInfo(){
 
      var r = new XMLHttpRequest();
      r.onreadystatechange = function(){
-      document.getElementById("coordinates_address").innerHTML = "<b>주소지</b>: ";
       if(r.readyState == 4){
        if(r.status == 200){
+        document.getElementById("coordinates_address").innerHTML = "<b>주소지</b>: ";
         var s = JSON.parse(r.responseText);
         if((typeof s.address_full != "undefined") && (s.address_full != null)){document.getElementById("coordinates_address").innerHTML += `${s.address_full} 인근`;}
         else{document.getElementById("coordinates_address").innerHTML += "(자료 없음)";}
