@@ -490,4 +490,19 @@ function initTable(){
  setInterval("showDateTimeNow();",200);
 }
 
+function resetTable(){
+ var dateNow = new Date();
+ var yearNow = dateNow.getFullYear();
+ var monthNow = dateNow.getMonth();
+
+ document.getElementById("year_now").value = yearNow;
+ document.getElementById("month_now").value = monthNow;
+
+ document.getElementById("in_year").value = yearNow;
+ document.getElementById("in_month").selectedIndex = monthNow;
+ 
+ document.getElementById("year_range").innerHTML = commonEraYears(calYearRangeMin)+" ~ "+commonEraYears(calYearRangeMax);
+ showTable();
+}
+
 
