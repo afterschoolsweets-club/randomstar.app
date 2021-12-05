@@ -409,13 +409,16 @@ function getCoordInfo(){
 
      var r = new XMLHttpRequest();
      r.onreadystatechange = function(){
+      document.getElementById("coordinates_address").innerHTML = "<b>주소지</b>: ";
       if(r.readyState == 4){
        if(r.status == 200){
-        document.getElementById("coordinates_address").innerHTML = "<b>주소지</b>: ";
         var s = JSON.parse(r.responseText);
         if((typeof s.address_full != "undefined") && (s.address_full != null)){document.getElementById("coordinates_address").innerHTML += `${s.address_full} 인근`;}
-        else{document.getElementById("coordinates_address").innerHTML += "알 수 없음";}
-       }else{alert(`정보를 불러오던 도중 오류가 발생하였습니다. [${r.status}]\n잠시 후 다시 시도해보세요.`);}
+        else{document.getElementById("coordinates_address").innerHTML += "(자료 없음)";}
+       }else{
+        alert(`정보를 불러오던 도중 오류가 발생하였습니다. [${r.status}]\n잠시 후 다시 시도해보세요.`);
+        if(r.status == 404){document.getElementById("coordinates_address").innerHTML += "(자료 없음)";}
+       }
       }
      };
 
