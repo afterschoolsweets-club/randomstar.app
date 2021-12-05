@@ -430,7 +430,7 @@ function getCoordInfo(){
      coordLink_K.appendChild(document.createTextNode("[카카오맵 앱 열기]"));
      document.getElementById("coordinates_links").appendChild(coordLink_K);
      document.getElementById("coordinates_links").innerHTML += "<br />";
-     r.open("GET",`https://api.yukinaserver.net/korealocation/coord.php?coord_lat=${curLat}&coord_long=${curLong}`);
+     r.open("GET",`https://api.yukinaserver.net/korealocation/p/${curLat},${curLong}`);
      r.send();
     }
    }
