@@ -433,6 +433,8 @@ function getCoordInfo(){
      coordLink_K.appendChild(document.createTextNode("[카카오맵 앱 열기]"));
      document.getElementById("coordinates_links").appendChild(coordLink_K);
      document.getElementById("coordinates_links").innerHTML += "<br />";
+
+     document.getElementById("coordinates_address").innerHTML = "<b>주소지</b>: 불러오는 중..."
      r.open("GET",`https://api.yukinaserver.net/korealocation/p/${curLat},${curLong}`);
      r.send();
     }
