@@ -467,7 +467,6 @@ function getCoordInfo(){
 
    document.getElementById("coordinates_details").innerHTML = "최근 확정: "+coordTimestampDisplay+"<br />";
    document.getElementById("coordinates_details").innerHTML += "고도: "+((p.coords.altitude != null) ? "약 "+Math.round(p.coords.altitude)+"m" : "N/A")+", 속도: "+((p.coords.heading != null) ? ((isNaN(p.coords.heading) != true) ? "" : degrees2direction(p.coords.heading)) : "")+" "+((p.coords.speed != null) ? Math.round(p.coords.speed * 3.6)+"km/h" : "N/A");
-   document.getElementById("coordinates_links").appendChild(coordDetails);
    
    document.getElementById("sunriset_info").innerHTML = "<b>일출</b>: "+risetInfo_S[1]+", <b>남중</b>: "+risetInfo_S[5]+", <b>일몰</b>: "+risetInfo_S[3]+"<br />(낮의 길이 "+risetInfo_S[6]+")";
    document.getElementById("moonriset_info").innerHTML = "<b>월출</b>: "+risetInfo_M[0]+", <b>월몰</b>: "+risetInfo_M[1]+"";
