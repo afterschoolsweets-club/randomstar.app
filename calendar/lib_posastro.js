@@ -113,14 +113,14 @@ function latLong(latitude0,longitude0){
  var latitudeMins=(sLat-latitudeDeg) * 60;
  var latitudeMin=Math.floor(latitudeMins);
  var latitudeSecs=(latitudeMins-latitudeMin) * 60;
- var latitudeSec=Math.floor(latitudeSecs * 10) / 10;
+ var latitudeSec=Math.floor(latitudeSecs);
  var latitudeSide=(latitude0 >= 0) ? "N" : "S";
 
  var longitudeDeg=Math.floor(sLong);
  var longitudeMins=(sLong-longitudeDeg) * 60;
  var longitudeMin=Math.floor(longitudeMins);
  var longitudeSecs=(longitudeMins-longitudeMin) * 60;
- var longitudeSec=Math.floor(longitudeSecs * 10) / 10;
+ var longitudeSec=Math.floor(longitudeSecs);
  var longitudeSide=(longitude0 >= 0) ? "E" : "W";
  
  return new Array(
