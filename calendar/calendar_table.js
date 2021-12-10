@@ -403,41 +403,58 @@ function getCoordInfo(){
 
    document.getElementById("coordinates_links").innerHTML += "&nbsp;";
    
-   if(curLong >= 124 && curLong <= 132){ // 대한민국 좌표범위 (경도)
-    if(curLat >= 32.875 && curLat <= 43.125){ // 대한민국 좌표범위 (위도)
-     document.getElementById("coordinates_links").innerHTML += "<br />";
+   if((curLat >= 32.875 && curLat <= 43.125) && (curLong >= 124 && curLong <= 132)){ // 대한민국 좌표범위 (위/경도)
+    document.getElementById("coordinates_links").innerHTML += "<br />";
 
-     var r = new XMLHttpRequest();
-     r.onreadystatechange = function(){
-      if(r.readyState == 4){
-       if(r.status == 200){
-        document.getElementById("coordinates_address").innerHTML = "<b>주소지</b>: ";
-        var s = JSON.parse(r.responseText);
-        if((typeof s.address_full != "undefined") && (s.address_full != null)){document.getElementById("coordinates_address").innerHTML += `${s.address_full} 인근`;}
-        else{document.getElementById("coordinates_address").innerHTML += "(자료 없음)";}
-       }else{
-        alert(`정보를 불러오던 도중 오류가 발생하였습니다. [${r.status}]\n잠시 후 다시 시도해보세요.`);
-        if(r.status == 404){document.getElementById("coordinates_address").innerHTML += "(자료 없음)";}
-       }
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function(){
+     if(r.readyState == 4){
+      if(r.status == 200){
+       document.getElementById("coordinates_address").innerHTML = "<b>주소지</b>: ";
+       var s = JSON.parse(r.responseText);
+       if((typeof s.address_full != "undefined") && (s.address_full != null)){document.getElementById("coordinates_address").innerHTML += `${s.address_full} 인근`;}
+       else{document.getElementById("coordinates_address").innerHTML += "(자료 없음)";}
+      }else{
+       alert(`정보를 불러오던 도중 오류가 발생하였습니다. [${r.status}]\n잠시 후 다시 시도해보세요.`);
+       if(r.status == 404){document.getElementById("coordinates_address").innerHTML += "(자료 없음)";}
       }
-     };
+     }
+    };
 
-     coordLink_N = document.createElement("a");
-     coordLink_N.href = "https://map.naver.com/";
-     coordLink_N.appendChild(document.createTextNode("[네이버 지도 앱 열기]"));
-     document.getElementById("coordinates_links").appendChild(coordLink_N);
-     document.getElementById("coordinates_links").innerHTML += "&nbsp;";
+    coordLink_N = document.createElement("a");
+    coordLink_N.href = "https://map.naver.com/";
+    coordLink_N.appendChild(document.createTextNode("[네이버 지도 앱 열기]"));
+    document.getElementById("coordinates_links").appendChild(coordLink_N);
+    document.getElementById("coordinates_links").innerHTML += "&nbsp;";
 
-     coordLink_K = document.createElement("a");
-     coordLink_K.href = "https://map.kakao.com/";
-     coordLink_K.appendChild(document.createTextNode("[카카오맵 앱 열기]"));
-     document.getElementById("coordinates_links").appendChild(coordLink_K);
-     document.getElementById("coordinates_links").innerHTML += "<br />";
+    coordLink_K = document.createElement("a");
+    coordLink_K.href = "https://map.kakao.com/";
+    coordLink_K.appendChild(document.createTextNode("[카카오맵 앱 열기]"));
+    document.getElementById("coordinates_links").appendChild(coordLink_K);
+    document.getElementById("coordinates_links").innerHTML += "<br />";
 
-     document.getElementById("coordinates_address").innerHTML = "<b>주소지</b>: 불러오는 중..."
-     r.open("GET",`https://api.yukinaserver.net/geolookup/local?coord_lat=${curLat}&coord_long=${curLong}`);
-     r.send();
-    }
+    document.getElementById("coordinates_address").innerHTML = "<b>주소지</b>: 불러오는 중..."
+    r.open("GET",`https://api.yukinaserver.net/geolookup/local?coord_lat=${curLat}&coord_long=${curLong}`);
+    r.send();
+   }else{
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function(){
+     if(r.readyState == 4){
+      if(r.status == 200){
+       document.getElementById("coordinates_address").innerHTML = "<b>주소지</b>: ";
+       var s = JSON.parse(r.responseText);
+       if((typeof s.address_full != "undefined") && (s.address_full != null)){document.getElementById("coordinates_address").innerHTML += `${s.address_full} 인근`;}
+       else{document.getElementById("coordinates_address").innerHTML += "(자료 없음)";}
+      }else{
+       alert(`정보를 불러오던 도중 오류가 발생하였습니다. [${r.status}]\n잠시 후 다시 시도해보세요.`);
+       if(r.status == 404){document.getElementById("coordinates_address").innerHTML += "(자료 없음)";}
+       else if(r.status == 500){document.getElementById("coordinates_address").innerHTML += "(일시적인 오류)";}
+      }
+     }
+    };
+
+    document.getElementById("coordinates_address").innerHTML = "<b>주소지</b>: 불러오는 중..."
+    r.open("GET",`https://api.yukinaserver.net/geolookup/global?coord_lat=${curLat}&coord_long=${curLong}`);
    }
 
    coordDetails = document.createElement("a");
