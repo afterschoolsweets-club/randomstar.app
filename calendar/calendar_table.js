@@ -403,6 +403,18 @@ function getCoordInfo(){
 
    document.getElementById("coordinates_links").innerHTML += "&nbsp;";
 
+   coordDetails = document.createElement("a");
+   coordDetails.href = "javascript:void(0);";
+   coordDetails.appendChild(document.createTextNode("[상세 정보]"));
+   coordDetails.onclick = function(){togglehide("coordinates_details");}
+
+   document.getElementById("coordinates_details").innerHTML = "최근 확정: "+coordTimestampDisplay+"<br />";
+   document.getElementById("coordinates_details").innerHTML += "고도: "+((p.coords.altitude != null) ? "약 "+Math.round(p.coords.altitude)+"m" : "N/A")+", 속도: "+((p.coords.heading != null) ? ((isNaN(p.coords.heading) != true) ? "" : degrees2direction(p.coords.heading)) : "")+" "+((p.coords.speed != null) ? Math.round(p.coords.speed * 3.6)+"km/h" : "N/A");
+   document.getElementById("coordinates_links").appendChild(coordDetails);
+   
+   document.getElementById("sunriset_info").innerHTML = "<b>일출</b>: "+risetInfo_S[1]+", <b>남중</b>: "+risetInfo_S[5]+", <b>일몰</b>: "+risetInfo_S[3]+"<br />(낮의 길이 "+risetInfo_S[6]+")";
+   document.getElementById("moonriset_info").innerHTML = "<b>월출</b>: "+risetInfo_M[0]+", <b>월몰</b>: "+risetInfo_M[1]+"";
+
    var a = new XMLHttpRequest();
 
    a.onreadystatechange = function(){
@@ -465,18 +477,6 @@ function getCoordInfo(){
 
    a.open("GET","https://get.geojs.io/v1/ip/geo.json"); // IP 주소 정보 불러오기
    a.send();
-    
-   coordDetails = document.createElement("a");
-   coordDetails.href = "javascript:void(0);";
-   coordDetails.appendChild(document.createTextNode("[상세 정보]"));
-   coordDetails.onclick = function(){togglehide("coordinates_details");}
-
-   document.getElementById("coordinates_details").innerHTML = "최근 확정: "+coordTimestampDisplay+"<br />";
-   document.getElementById("coordinates_details").innerHTML += "고도: "+((p.coords.altitude != null) ? "약 "+Math.round(p.coords.altitude)+"m" : "N/A")+", 속도: "+((p.coords.heading != null) ? ((isNaN(p.coords.heading) != true) ? "" : degrees2direction(p.coords.heading)) : "")+" "+((p.coords.speed != null) ? Math.round(p.coords.speed * 3.6)+"km/h" : "N/A");
-   document.getElementById("coordinates_links").appendChild(coordDetails);
-   
-   document.getElementById("sunriset_info").innerHTML = "<b>일출</b>: "+risetInfo_S[1]+", <b>남중</b>: "+risetInfo_S[5]+", <b>일몰</b>: "+risetInfo_S[3]+"<br />(낮의 길이 "+risetInfo_S[6]+")";
-   document.getElementById("moonriset_info").innerHTML = "<b>월출</b>: "+risetInfo_M[0]+", <b>월몰</b>: "+risetInfo_M[1]+"";
   },function(e){
    alert("위치정보 수집을 허용하지 않았거나 오류가 발생하였습니다.");
    document.getElementById("coordinates_info").innerHTML = "위치정보를 얻어올 수 없습니다.";
