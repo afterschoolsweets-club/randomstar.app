@@ -390,8 +390,8 @@ function getCoordInfo(){
    coordDisplay = latLong(curLat,curLong);
 
    document.getElementById("coordinates_info").innerHTML = "<b>위치</b>: ";
-   document.getElementById("coordinates_info").innerHTML += ((curLat > 0) ? "북위" : "남위")+" "+coordDisplay[0][1]+"도 "+coordDisplay[0][2]+"분 "+coordDisplay[0][3]+"초, ";
-   document.getElementById("coordinates_info").innerHTML += ((curLong > 0) ? "동경" : "서경")+" "+coordDisplay[1][1]+"도 "+coordDisplay[1][2]+"분 "+coordDisplay[0][3]+"초<br />";
+   document.getElementById("coordinates_info").innerHTML += ((curLat > 0) ? "북위" : "남위")+" "+coordDisplay[0][1]+"&deg; "+coordDisplay[0][2]+"&prime; "+coordDisplay[0][3]+"&Prime;, ";
+   document.getElementById("coordinates_info").innerHTML += ((curLong > 0) ? "동경" : "서경")+" "+coordDisplay[1][1]+"&deg; "+coordDisplay[1][2]+"&prime; "+coordDisplay[0][3]+"&Prime;<br />";
    document.getElementById("coordinates_info").innerHTML += "(정확도: 반경 약 "+Math.round(p.coords.accuracy)+"m 이내)"
    
    document.getElementById("coordinates_links").innerHTML = "";
