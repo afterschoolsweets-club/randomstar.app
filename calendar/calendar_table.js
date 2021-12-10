@@ -464,11 +464,6 @@ function getCoordInfo(){
      }
     }
    };
-   
-   coordDetails = document.createElement("a");
-   coordDetails.href = "javascript:void(0);";
-   coordDetails.appendChild(document.createTextNode("[상세 정보]"));
-   coordDetails.onclick = function(){togglehide("coordinates_details");}
 
    document.getElementById("coordinates_details").innerHTML = "최근 확정: "+coordTimestampDisplay+"<br />";
    document.getElementById("coordinates_details").innerHTML += "고도: "+((p.coords.altitude != null) ? "약 "+Math.round(p.coords.altitude)+"m" : "N/A")+", 속도: "+((p.coords.heading != null) ? ((isNaN(p.coords.heading) != true) ? "" : degrees2direction(p.coords.heading)) : "")+" "+((p.coords.speed != null) ? Math.round(p.coords.speed * 3.6)+"km/h" : "N/A");
