@@ -462,6 +462,9 @@ function getCoordInfo(){
      }
     }
    };
+
+   a.open("GET","https://get.geojs.io/v1/ip/geo.json"); // IP 주소 정보 불러오기
+   a.send();
     
    coordDetails = document.createElement("a");
    coordDetails.href = "javascript:void(0);";
@@ -474,9 +477,6 @@ function getCoordInfo(){
    
    document.getElementById("sunriset_info").innerHTML = "<b>일출</b>: "+risetInfo_S[1]+", <b>남중</b>: "+risetInfo_S[5]+", <b>일몰</b>: "+risetInfo_S[3]+"<br />(낮의 길이 "+risetInfo_S[6]+")";
    document.getElementById("moonriset_info").innerHTML = "<b>월출</b>: "+risetInfo_M[0]+", <b>월몰</b>: "+risetInfo_M[1]+"";
-
-   a.open("GET","https://get.geojs.io/v1/ip/geo.json"); // IP 주소 정보 불러오기
-   a.send();
   },function(e){
    alert("위치정보 수집을 허용하지 않았거나 오류가 발생하였습니다.");
    document.getElementById("coordinates_info").innerHTML = "위치정보를 얻어올 수 없습니다.";
