@@ -407,7 +407,7 @@ function getCoordInfo(){
 
    a.onreadystatechange = function(){
     if(a.readyState == 4 && a.status == 200){
-     var cc = a.country_code.toLowerCase();
+     var cc = (JSON.parse(a.responseText)).country_code.toLowerCase();
      if((cc == "kr") && (curLat >= 32.875 && curLat <= 43.125) && (curLong >= 124 && curLong <= 132)){ // 위치 정보가 한반도 위치 범위 내이고 IP 주소 상 위치가 대한민국으로 잡힐 경우
       document.getElementById("coordinates_links").innerHTML += "<br />";
 
