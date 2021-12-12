@@ -385,8 +385,13 @@ function getCoordInfo(){
    coordSec = coordTimestamp.getSeconds();
    coordTimestampDisplay = coordYear+"-"+onedights(coordMonth)+"-"+onedights(coordDay)+" "+onedights(coordHour)+":"+onedights(coordMin)+":"+onedights(coordSec);
    
-   risetInfo_S = getSunriseSunset(yearNow,monthNow,dayNow,curLat,curLong,0,-(timezoneNow / 60),false);
+   risetInfo_S = getSunriseSunset(yearNow,monthNow,dayNow,curLat,curLong,0,-(timezoneNow / 60),false); // 일출/일몰
+   twilightInfo_C = getSunriseSunset(yearNow,monthNow,dayNow,curLat,curLong,1,-(timezoneNow / 60),false); // 시민 박명(아침/저녁)
+   twilightInfo_M = getSunriseSunset(yearNow,monthNow,dayNow,curLat,curLong,2,-(timezoneNow / 60),false); // 항해 박명(아침/저녁)
+   twilightInfo_A = getSunriseSunset(yearNow,monthNow,dayNow,curLat,curLong,3,-(timezoneNow / 60),false); // 천문 박명(아침/저녁)
+
    risetInfo_M = findMoonRiset(yearNow,monthNow,dayNow,-(timezoneNow / 60),curLong,curLat);
+
    coordDisplay = latLong(curLat,curLong);
 
    document.getElementById("coordinates_info").innerHTML = "<b>위치</b>: ";
@@ -468,8 +473,12 @@ function getCoordInfo(){
    document.getElementById("coordinates_details").innerHTML = "고도: "+((p.coords.altitude != null) ? "약 "+Math.round(p.coords.altitude)+"m" : "N/A")+", 속도: "+((p.coords.heading != null) ? ((isNaN(p.coords.heading) != true) ? "" : degrees2direction(p.coords.heading)) : "")+" "+((p.coords.speed != null) ? Math.round(p.coords.speed * 3.6)+"km/h" : "N/A")+"<br />";
    document.getElementById("coordinates_details").innerHTML += "최근 확정: "+coordTimestampDisplay;
 
-   document.getElementById("sunriset_info").innerHTML = "<b>일출</b>: "+risetInfo_S[1]+", <b>남중</b>: "+risetInfo_S[5]+", <b>일몰</b>: "+risetInfo_S[3]+"<br />(낮의 길이 "+risetInfo_S[6]+")";
-   document.getElementById("moonriset_info").innerHTML = "<b>월출</b>: "+risetInfo_M[0]+", <b>월몰</b>: "+risetInfo_M[1]+"";
+   document.getElementById("sunriset_info").innerHTML = `<b>일출</b>: ${risetInfo_S[1]}, <b>남중</b>: ${risetInfo_S[5]}, <b>일몰</b>: ${risetInfo_S[3]}<br />(낮의 길이 ${risetInfo_S[6]})`;
+   document.getElementById("moonriset_info").innerHTML = `<b>월출</b>: ${risetInfo_M[0]}, <b>월몰</b>: ${risetInfo_M[1]}`;
+
+   document.getElementById("twilight_info").innerHTML = `<b>시민 박명</b>: ${twilightInfo_C[1]} (아침)/${risetInfo_S[3]} (저녁)<br />`;
+   document.getElementById("twilight_info").innerHTML = `<b>항해 박명</b>: ${twilightInfo_M[1]} (아침)/${risetInfo_M[3]} (저녁)<br />`;
+   document.getElementById("twilight_info").innerHTML = `<b>천문 박명</b>: ${twilightInfo_A[1]} (아침)/${risetInfo_A[3]} (저녁)`;
 
    a.open("GET","https://get.geojs.io/v1/ip/geo.json"); // IP 주소 정보 불러오기
    a.send();
