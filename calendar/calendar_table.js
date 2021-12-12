@@ -477,8 +477,8 @@ function getCoordInfo(){
    document.getElementById("moonriset_info").innerHTML = `<b>월출</b>: ${risetInfo_M[0]}, <b>월몰</b>: ${risetInfo_M[1]}`;
 
    document.getElementById("twilight_info").innerHTML = `<b>시민 박명</b>: ${twilightInfo_C[1]} (아침)/${risetInfo_S[3]} (저녁)<br />`;
-   document.getElementById("twilight_info").innerHTML = `<b>항해 박명</b>: ${twilightInfo_M[1]} (아침)/${risetInfo_M[3]} (저녁)<br />`;
-   document.getElementById("twilight_info").innerHTML = `<b>천문 박명</b>: ${twilightInfo_A[1]} (아침)/${risetInfo_A[3]} (저녁)`;
+   document.getElementById("twilight_info").innerHTML += `<b>항해 박명</b>: ${twilightInfo_M[1]} (아침)/${risetInfo_M[3]} (저녁)<br />`;
+   document.getElementById("twilight_info").innerHTML += `<b>천문 박명</b>: ${twilightInfo_A[1]} (아침)/${risetInfo_A[3]} (저녁)`;
 
    a.open("GET","https://get.geojs.io/v1/ip/geo.json"); // IP 주소 정보 불러오기
    a.send();
