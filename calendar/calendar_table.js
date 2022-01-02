@@ -590,23 +590,10 @@ function dateDiff00(){
  if(diffDays <= 0){document.getElementById("result_00").innerHTML = ""+weekdayStr[baseWeekday]+"요일이며, 오늘은 기준일로부터 "+(Math.abs(diffDays)+((isStartingDay != false) ? 1 : 0))+"일"+((Math.abs(diffYears) >= 1 || Math.abs(diffMons) >= 1) ? diffYMD : "")+((isStartingDay != false) ? "째입니다." : " 지났습니다.");}
  else{document.getElementById("result_00").innerHTML = ""+weekdayStr[baseWeekday]+"요일이며, 기준일시까지는 "+(Math.abs(diffDays))+"일"+((Math.abs(diffYears) >= 1 || Math.abs(diffMons) >= 1) ? diffYMD : "")+" 남았습니다.";}
 
- var oldStyleDate = JD2solar(baseDayCount,0);
- var solarOffset = (Math.floor(baseDateY / 100)-Math.floor(baseDateY / 400)-2);
-
-
  document.getElementById("result_jd").innerHTML = "율리우스 적일(積日): 제 "+Math.ceil(baseDayCount)+"일";
  document.getElementById("result_jd").innerHTML += " (만 "+fracDayCount.toFixed(5)+"일, 서력 "+((baseDateY >= 1) ? "기원 "+baseDateY : "기원전 "+(1+Math.abs(baseDateY)))+"년의 "+yeardays(baseDateY,baseDateM,baseDateD)+"번째 날)";
- if(baseDateChecksum >= 15821015){
-  document.getElementById("result_ly").innerHTML = "윤년 여부: "+(leap_solar(baseDateY) ? "윤년 (366일)" : "평년 (365일)");
-  document.getElementById("result_ld").style.display = "inline-block";
-  document.getElementById("result_ld").innerHTML = "현행 양력(그레고리력) 시행(1582.10.15)으로부터 "+(Math.ceil(fracDayCount-gregorianEpoch)+1)+"일째";
-  document.getElementById("result_co").innerHTML = "율리우스력 날짜: "+oldStyleDate[0]+"년 "+oldStyleDate[1]+"월 "+oldStyleDate[2]+"일 (현행 양력보다 "+Math.abs(solarOffset)+"일 "+((solarOffset > 0) ? "늦음" : "빠름")+")";
- }else{
-  document.getElementById("result_ly").innerHTML = "윤년 여부: "+(leap_oldsolar(baseDateY) ? "윤년 (366일)" : "평년 (365일)");
-  document.getElementById("result_ld").style.display = "none";
-  document.getElementById("result_ld").innerHTML = "";
-  document.getElementById("result_co").innerHTML = "현행 양력과의 오차: "+Math.abs(solarOffset)+"일"+((solarOffset > 0) ? " 늦음" : ((solarOffset == 0) ? "" : " 빠름"));
- }
+ if(baseDateChecksum >= 15821015){document.getElementById("result_ly").innerHTML = "윤년 여부: "+(leap_solar(baseDateY) ? "윤년 (366일)" : "평년 (365일)");}
+ else{document.getElementById("result_ly").innerHTML = "윤년 여부: "+(leap_oldsolar(baseDateY) ? "윤년 (366일)" : "평년 (365일)");}
  document.getElementById("result_ut").innerHTML = "유닉스 시간 (초): "+uTime+" ("+((uTime < 0) ? "-" : "")+"0x"+Math.abs(uTime).toString(16)+", 1970년 1월 1일 0시로부터 "+Math.abs(uTimeDayCount.toFixed(5))+"일 "+((uTime < 0) ? "이전" : "경과")+")";
  document.getElementById("result_ut").style.cursor = "help";
  document.getElementById("result_ut").title = "2의 약 "+ Math.log2(Math.abs(uTime)).toFixed(8) +"제곱";
@@ -765,9 +752,9 @@ function calcLunar(){
 
  document.getElementById("result_lc").style.display = "inline-block";
  document.getElementById("result_lu").style.display = "inline-block";
- var lunarDateDisplay = "음력 날짜: "+lunarDate[0]+"년(단기 "+(new Number(lunarDate[0])+2333)+"년) "+lunarDate[1]+"월 "+lunarDate[2]+"일 ("+((lunarDate[3] == 1) ? "윤달" : "평달")+")";
+ var lunarDateDisplay = `음력 날짜: ${lunarDate[0]}년 ${lunarDate[1]}월 ${lunarDate[2]}일 (${((lunarDate[3] == 1) ? "윤달" : "평달")})`;
 
- var lunarBranchesDisplay = "음력 간지: "+ kstems[lunarDate[5]]+kbranches[lunarDate[6]]+"("+hstems[lunarDate[5]]+hbranches[lunarDate[6]]+")년 ";
+ var lunarBranchesDisplay = `음력 간지: ${kstems[lunarDate[5]]+kbranches[lunarDate[6]]}(${hstems[lunarDate[5]]+hbranches[lunarDate[6]]})년 `;
  lunarBranchesDisplay += kstems[lunarDate[7]]+kbranches[lunarDate[8]]+"("+hstems[lunarDate[7]]+hbranches[lunarDate[8]]+")월 ";
  lunarBranchesDisplay += kstems[lunarDate[9]]+kbranches[lunarDate[10]]+"("+hstems[lunarDate[9]]+hbranches[lunarDate[10]]+")일";
 
