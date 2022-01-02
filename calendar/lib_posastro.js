@@ -274,7 +274,7 @@ function yeardaysfromJD(JD){
 
 // 율리우스 적일로 요일을 구함
 function jwday(jd){return dmod(Math.floor(jd+1.5),7);}
-
+function getWeekday(jd){return jwday(jd);}
 
 var weekdayFS = {
  weekdayBefore : function(weekday,JD){return JD-jwday(JD-weekday);},
