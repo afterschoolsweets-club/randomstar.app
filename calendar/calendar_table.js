@@ -506,6 +506,407 @@ function coordAutoRefresh(){
  }
 }
 
+var weekdayStr = new Array("일","월","화","수","목","금","토");
+var numMonDays = [31,0,31,30,31,30,31,31,30,31,30,31];
+var gregorianEpoch = 2299161;
+
+var date_error_msg01 = "1582년 10월 5일부터 14일까지의 날짜는 존재하지 않는 날짜입니다. 다시 입력해주세요.";
+
+function dateDiff00(){
+ var baseDateY = new Number(document.getElementById("date_base_year").value);
+ var baseDateM = new Number(document.getElementById("date_base_month").value);
+ var baseDateD = new Number(document.getElementById("date_base_day").value);
+ var baseDateH = new Number(document.getElementById("date_base_hours").value);
+ var baseDateI = new Number(document.getElementById("date_base_mins").value);
+ var baseDateS = new Number(document.getElementById("date_base_secs").value);
+ var baseDateChecksum = (baseDateY * 10000)+(baseDateM * 100)+baseDateD;
+ var baseDayCount = solar2JD(baseDateY,baseDateM,baseDateD,1);
+
+ var today = new Date();
+ var todayDayCount = solar2JD(today.getFullYear(),today.getMonth()+1,today.getDate(),1);
+
+ if((baseDateChecksum >= 15821005 && baseDateChecksum <= 15821014)){
+  if(baseDayCount < 0){
+   alert(date_error_msg01);
+   setToday();
+   return false;
+  }
+ }
+
+ var baseWeekday = getWeekday(baseDayCount);
+
+ var diffDays = (baseDayCount - todayDayCount);
+
+ numMonDays[1] = leap_solar(baseDateY) ? 29 : 28;
+
+ var todayYears = today.getFullYear();
+ var todayMons = today.getMonth()+1;
+ var todayDate = today.getDate();
+
+ if(baseDateM == 2){numMonDays[1] = leap_solar(baseDateY) ? 29 : 28;}
+ if(todayMons == 2){numMonDays[1] = leap_solar(todayYears) ? 29 : 28;}
+
+ if(diffDays < 0){
+  var diffYears = todayYears - baseDateY;
+  var diffAnn = new Date(baseDateY+diffYears,baseDateM-1,baseDateD);
+  if(diffAnn > today){--diffYears;}
+
+  var diffMons = todayMons - baseDateM;
+  if(diffMons < 0){diffMons = diffMons+12;}
+
+  var diffDate = todayDate - baseDateD;
+  if(diffDate < 0){
+   var baseStamp = new Date(baseDateY,baseDateM,baseDateD);
+   diffDate = diffDate+(32-(new Date(baseStamp.getFullYear(),baseStamp.getMonth()-1,32)).getDate());
+  }
+  if(todayDate < baseDateD){
+   if(diffMons == 0){diffMons = 11;}
+   else{--diffMons;}
+  }
+ }else{
+  var diffDate = baseDateD - todayDate;
+  var diffMons = baseDateM - todayMons;
+  if(diffDate < 0){
+   diffDate = diffDate+numMonDays[baseDateM-2];
+   diffMons = diffMons-1;
+  }
+  var diffYears = baseDateY - todayYears;
+  if(diffMons < 0){
+   diffMons = diffMons+12;
+   diffYears = diffYears-1;
+  }
+ }
+
+ var isStartingDay = document.getElementById("is_startingday").checked;
+
+ var diffYMD = "(만 "+((diffYears >= 1) ? diffYears+"년" : "")+((Math.abs(diffMons) >= 1) ? " "+diffMons+"개월" : "")+((diffDate >= 1) ? " "+diffDate+"일" : "")+")";
+
+ var uTime = ((baseDayCount-2440587.5) * 86400)+(baseDateH * 3600)+(baseDateI * 60)+baseDateS;
+ var uTimeDayCount = (uTime / 86400);
+ var fracDayCount = baseDayCount+(baseDateH / 24)+(baseDateI / 1440)+(baseDateS / 86400);
+
+ document.getElementById("startingday_word").innerHTML = (isStartingDay != false) ? "일째 되는 날은" : "일 지난 날은";
+
+ if(diffDays <= 0){document.getElementById("result_00").innerHTML = ""+weekdayStr[baseWeekday]+"요일이며, 오늘은 기준일로부터 "+(Math.abs(diffDays)+((isStartingDay != false) ? 1 : 0))+"일"+((Math.abs(diffYears) >= 1 || Math.abs(diffMons) >= 1) ? diffYMD : "")+((isStartingDay != false) ? "째입니다." : " 지났습니다.");}
+ else{document.getElementById("result_00").innerHTML = ""+weekdayStr[baseWeekday]+"요일이며, 기준일시까지는 "+(Math.abs(diffDays))+"일"+((Math.abs(diffYears) >= 1 || Math.abs(diffMons) >= 1) ? diffYMD : "")+" 남았습니다.";}
+
+ var oldStyleDate = JD2solar(baseDayCount,0);
+ var solarOffset = (Math.floor(baseDateY / 100)-Math.floor(baseDateY / 400)-2);
+
+
+ document.getElementById("result_jd").innerHTML = "율리우스 적일(積日): 제 "+Math.ceil(baseDayCount)+"일";
+ document.getElementById("result_jd").innerHTML += " (만 "+fracDayCount.toFixed(5)+"일, 서력 "+((baseDateY >= 1) ? "기원 "+baseDateY : "기원전 "+(1+Math.abs(baseDateY)))+"년의 "+yeardays(baseDateY,baseDateM,baseDateD)+"번째 날)";
+ if(baseDateChecksum >= 15821015){
+  document.getElementById("result_ly").innerHTML = "윤년 여부: "+(leap_solar(baseDateY) ? "윤년 (366일)" : "평년 (365일)");
+  document.getElementById("result_ld").style.display = "inline-block";
+  document.getElementById("result_ld").innerHTML = "현행 양력(그레고리력) 시행(1582.10.15)으로부터 "+(Math.ceil(fracDayCount-gregorianEpoch)+1)+"일째";
+  document.getElementById("result_co").innerHTML = "율리우스력 날짜: "+oldStyleDate[0]+"년 "+oldStyleDate[1]+"월 "+oldStyleDate[2]+"일 (현행 양력보다 "+Math.abs(solarOffset)+"일 "+((solarOffset > 0) ? "늦음" : "빠름")+")";
+ }else{
+  document.getElementById("result_ly").innerHTML = "윤년 여부: "+(leap_oldsolar(baseDateY) ? "윤년 (366일)" : "평년 (365일)");
+  document.getElementById("result_ld").style.display = "none";
+  document.getElementById("result_ld").innerHTML = "";
+  document.getElementById("result_co").innerHTML = "현행 양력과의 오차: "+Math.abs(solarOffset)+"일"+((solarOffset > 0) ? " 늦음" : ((solarOffset == 0) ? "" : " 빠름"));
+ }
+ document.getElementById("result_ut").innerHTML = "유닉스 시간 (초): "+uTime+" ("+((uTime < 0) ? "-" : "")+"0x"+Math.abs(uTime).toString(16)+", 1970년 1월 1일 0시로부터 "+Math.abs(uTimeDayCount.toFixed(5))+"일 "+((uTime < 0) ? "이전" : "경과")+")";
+ document.getElementById("result_ut").style.cursor = "help";
+ document.getElementById("result_ut").title = "2의 약 "+ Math.log2(Math.abs(uTime)).toFixed(8) +"제곱";
+}
+
+function dateDiff01(){
+ var baseDateY = new Number(document.getElementById("date_base_year").value);
+ var baseDateM = new Number(document.getElementById("date_base_month").value);
+ var baseDateD = new Number(document.getElementById("date_base_day").value);
+ var baseDateChecksum = (baseDateY * 10000)+(baseDateM * 100)+baseDateD;
+ var baseDayCount = solar2JD(baseDateY,baseDateM,baseDateD,1);
+
+ if((baseDateChecksum >= 15821005 && baseDateChecksum <= 15821014)){
+  if(baseDayCount < 0){
+   alert(date_error_msg01);
+   setToday();
+   return false;
+  }
+ }
+
+ var isStartingDay = document.getElementById("is_startingday").checked;
+
+ var daysAfter = new Number(document.getElementById("date_after").value);
+ var destDate = JD2solar((baseDayCount + daysAfter)-((isStartingDay != false) ? 1 : 0),1);
+
+ destDate = destDate[0]+"."+destDate[1]+"."+destDate[2];
+ 
+ document.getElementById("result_01").value = destDate;
+}
+
+function dateDiff02(){
+ var baseDateY = new Number(document.getElementById("date_base_year").value);
+ var baseDateM = new Number(document.getElementById("date_base_month").value);
+ var baseDateD = new Number(document.getElementById("date_base_day").value);
+ var baseDateH = new Number(document.getElementById("date_base_hours").value);
+ var baseDateI = new Number(document.getElementById("date_base_mins").value);
+ var baseDateS = new Number(document.getElementById("date_base_secs").value);
+ var baseDateChecksum = (baseDateY * 10000)+(baseDateM * 100)+baseDateD;
+ var baseDayCount = solar2JD(baseDateY,baseDateM,baseDateD,1);
+
+ if((baseDateChecksum >= 15821005 && baseDateChecksum <= 15821014)){
+  if(baseDayCount < 0){
+   alert(date_error_msg01);
+   setToday();
+   return false;
+  }
+ }
+
+ var destDateY = new Number(document.getElementById("date_dest_year").value);
+ var destDateM = new Number(document.getElementById("date_dest_month").value);
+ var destDateD = new Number(document.getElementById("date_dest_day").value);
+ var destDateH = new Number(document.getElementById("date_dest_hours").value);
+ var destDateI = new Number(document.getElementById("date_dest_mins").value);
+ var destDateS = new Number(document.getElementById("date_dest_secs").value);
+ var destDateChecksum = (destDateY * 10000)+(destDateM * 100)+destDateD;
+ var destDayCount = solar2JD(destDateY,destDateM,destDateD,1);
+
+
+ if((baseDateChecksum >= 15821005 && baseDateChecksum <= 15821014) || (destDateChecksum >= 15821005 && destDateChecksum <= 15821014)){
+  if(baseDayCount < 0 || destDayCount < 0){
+   alert(date_error_msg01);
+   setToday();
+   return false;
+  }
+ }
+ var diffAbsDays = (destDayCount - baseDayCount);
+
+ var diffDays = diffAbsDays+1;
+
+ var HMSChecksum = ((destDateH - baseDateH) * 10000)+((destDateI - baseDateI) * 100)+(destDateS - baseDateS);
+ var isStartingDay = document.getElementById("is_startingday").checked;
+
+ if(destDayCount <= baseDayCount){
+  if(HMSChecksum < 0){
+   var diffHours = (baseDateH - destDateH);
+   var diffMins = (baseDateI - destDateI);
+   var diffSecs = (baseDateS - destDateS);
+   document.getElementById("destday_word").innerHTML = "일 전";
+  }else{
+   var diffHours = (destDateH - baseDateH);
+   var diffMins = (destDateI - baseDateI);
+   var diffSecs = (destDateS - baseDateS);
+   document.getElementById("destday_word").innerHTML = (isStartingDay != false) ? "일째" : "일 후";
+  }
+  diffDays--;
+ }else{
+  var diffHours = (destDateH - baseDateH);
+  var diffMins = (destDateI - baseDateI);
+  var diffSecs = (destDateS - baseDateS);
+  document.getElementById("destday_word").innerHTML = (isStartingDay != false) ? "일째" : "일 후";
+ }
+
+ if(destDayCount == baseDayCount){
+  diffDays = diffDays+1;
+  document.getElementById("destday_word").innerHTML = "일";
+ }
+
+ document.getElementById("desttime_word").innerHTML = ((destDayCount <= baseDayCount) ? ((HMSChecksum < 0) ? "전" : "후") : "후");
+
+ if(diffSecs < 0){
+  diffSecs = diffSecs+60;
+  diffMins = diffMins-1;
+ }
+
+ if(diffMins < 0){
+  diffMins = diffMins+60;
+  diffHours = diffHours-1;
+ }
+
+ if(diffHours < 0){
+  diffHours = diffHours+24;
+  diffAbsDays = diffAbsDays-1;
+ }
+
+ var diffAbsTime = Math.abs(diffAbsDays)+"일 "+diffHours+"시간 "+diffMins+"분 "+diffSecs+"초 ";
+
+ document.getElementById("result_02a").value = (Math.abs(diffDays)-((isStartingDay != false) ? 0 : 1));
+ document.getElementById("result_02b").value = diffAbsTime;
+}
+
+function dateDiff03(){
+ var baseDateY = new Number(document.getElementById("date_base_year").value);
+ var baseDateM = new Number(document.getElementById("date_base_month").value);
+ var baseDateD = new Number(document.getElementById("date_base_day").value);
+ var baseDateChecksum = (baseDateY * 10000)+(baseDateM * 100)+baseDateD;
+ var baseDayCount = solar2JD(baseDateY,baseDateM,baseDateD,1);
+
+ if((baseDateChecksum >= 15821005 && baseDateChecksum <= 15821014)){
+  if(baseDayCount < 0){
+   alert(date_error_msg01);
+   setToday();
+   return false;
+  }
+ }
+
+ var daysBefore = new Number(document.getElementById("date_before").value);
+ var destDate = JD2solar(baseDayCount - daysBefore,1);
+
+ destDate = destDate[0]+"."+destDate[1]+"."+destDate[2];
+ 
+ document.getElementById("result_03").value = destDate;
+}
+
+function calcLunar(){
+ var baseDateY = new Number(document.getElementById("date_base_year").value);
+ var baseDateM = new Number(document.getElementById("date_base_month").value);
+ var baseDateD = new Number(document.getElementById("date_base_day").value);
+
+ var lunarDate = solar2lunar(baseDateY,baseDateM,baseDateD);
+
+ if(lunarDate == false){
+  document.getElementById("result_lc").style.display = "none";
+  document.getElementById("result_lu").style.display = "none";
+  return;
+ }
+
+ document.getElementById("result_lc").style.display = "inline-block";
+ document.getElementById("result_lu").style.display = "inline-block";
+ var lunarDateDisplay = "음력 날짜: "+lunarDate[0]+"년(단기 "+(new Number(lunarDate[0])+2333)+"년) "+lunarDate[1]+"월 "+lunarDate[2]+"일 ("+((lunarDate[3] == 1) ? "윤달" : "평달")+")";
+
+ var lunarBranchesDisplay = "음력 간지: "+ kstems[lunarDate[5]]+kbranches[lunarDate[6]]+"("+hstems[lunarDate[5]]+hbranches[lunarDate[6]]+")년 ";
+ lunarBranchesDisplay += kstems[lunarDate[7]]+kbranches[lunarDate[8]]+"("+hstems[lunarDate[7]]+hbranches[lunarDate[8]]+")월 ";
+ lunarBranchesDisplay += kstems[lunarDate[9]]+kbranches[lunarDate[10]]+"("+hstems[lunarDate[9]]+hbranches[lunarDate[10]]+")일";
+
+ document.getElementById("result_lc").innerHTML = lunarDateDisplay;
+ document.getElementById("result_lu").innerHTML = lunarBranchesDisplay;
+}
+
+
+
+function setToday(){
+ var now = new Date();
+ var yNow = now.getFullYear();
+ var mNow = now.getMonth()+1;
+ var dNow = now.getDate();
+
+ var hNow = now.getHours();
+ var iNow = now.getMinutes();
+ var sNow = now.getSeconds();
+
+ var yNext = now.getFullYear()+1;
+
+ document.getElementById("date_base_year").value = yNow;
+ document.getElementById("date_base_month").value = mNow
+ document.getElementById("date_base_day").value = dNow;
+ document.getElementById("date_base_hours").value = hNow;
+ document.getElementById("date_base_mins").value = iNow;
+ document.getElementById("date_base_secs").value = sNow;
+ document.getElementById("date_dest_year").value = yNext;
+ document.getElementById("date_dest_month").value = 1;
+ document.getElementById("date_dest_day").value = 1;
+ document.getElementById("date_dest_hours").value = 0;
+ document.getElementById("date_dest_mins").value = 0;
+ document.getElementById("date_dest_secs").value = 0;
+
+ document.getElementById("date_after").value = 1;
+ document.getElementById("date_before").value = 1;
+ document.getElementById("result_01").value = "";
+ document.getElementById("result_02a").value = "";
+ document.getElementById("result_02b").value = "";
+ document.getElementById("result_03").value = "";
+
+ document.getElementById("is_startingday").checked = true;
+
+ dateDiff00();
+ dateDiff01();
+ dateDiff02();
+ dateDiff03();
+ calcLunar();
+}
+
+
+function initSelectBase(){
+ var yearB = new Number(document.getElementById("date_base_year").value);
+ var isLeapB = leap_solar(yearB);
+ numMonDays[1] = isLeapB ? 29 : 28;
+
+ var monthB = new Number(document.getElementById("date_base_month").value);
+ var nd = numMonDays[monthB-1];
+
+ var days = document.getElementById("date_base_day");
+ var sDay = new Number(days.value);
+ 
+ days.length = 0;
+ for(b=1;b<=nd;b++){
+  if(yearB == 1582 && monthB == 10){
+   if(b > 4 && b < 15){continue;}
+  }
+  dt = document.createElement("option");
+  dt.text = b;
+  dt.value = b;
+  days.add(dt);
+ }
+
+ if(monthB == 2 && sDay > numMonDays[1]){sDay = numMonDays[1];}
+ days.value = sDay;
+
+ dateDiff00();
+ dateDiff01();
+ dateDiff02();
+ dateDiff03();
+ calcLunar();
+}
+
+function initSelectDest(){
+ var yearD = new Number(document.getElementById("date_dest_year").value);
+ var isLeapD = leap_solar(yearD);
+ numMonDays[1] = isLeapD ? 29 : 28;
+
+ var monthD = new Number(document.getElementById("date_dest_month").value);
+ var nd = numMonDays[monthD-1];
+
+ var days = document.getElementById("date_dest_day");
+ var sDay = new Number(days.value);
+ days.length = 0;
+
+ for(d=1;d<=nd;d++){
+  if(yearD == 1582 && monthD == 10){
+   if(d > 4 && d < 15){continue;}
+  }
+  dt = document.createElement("option");
+  dt.text = d;
+  dt.value = d;
+  days.add(dt);
+ }
+
+ if(monthD == 2 && sDay > numMonDays[1]){sDay = numMonDays[1];}
+ days.value = sDay;
+
+ dateDiff00();
+ dateDiff01();
+ dateDiff02();
+ dateDiff03();
+ calcLunar();
+}
+
+function initDateCalc(){
+ var months = document.getElementById("date_base_month");
+ for(var m=1;m<=12;m++){
+  var mon = document.createElement("option");
+  mon.text = m;
+  mon.value = m;
+  months.add(mon);
+ }
+
+ var months = document.getElementById("date_dest_month");
+ for(var m=1;m<=12;m++){
+  var mon = document.createElement("option");
+  mon.text = m;
+  mon.value = m;
+  months.add(mon);
+ }
+ 
+ setInterval(function(){dispDateNow();},500);
+
+ initSelectBase();
+ initSelectDest();
+ setToday();
+}
+
 function initTable(){
 
  var dateNow = new Date();
@@ -522,6 +923,7 @@ function initTable(){
  document.getElementById("year_range").innerHTML = commonEraYears(calYearRangeMin)+" ~ "+commonEraYears(calYearRangeMax);
  getCoordInfo();
  showTable();
+ initDateCalc();
  setInterval("showDateTimeNow();",200);
 }
 

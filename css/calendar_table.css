@@ -10,3 +10,8 @@ padding: 0 1em;
 text-align: center;
 border: 1px solid #000000;
 }
+
+#calcfield{
+width: 100%;
+margin-top: 1rem;
+}
