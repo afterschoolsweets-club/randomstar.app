@@ -213,6 +213,9 @@ function degrees2direction(degs){
 // 입력된 양력년도가 윤년(366일 -- 2월 29일이 있는 해)인지 검사
 function leap_solar(year){return ((((year % 100) % 4) == 0) && (!(((year % 100) == 0) && ((year % 400) != 0))));}
 
+// 구 양력(율리우스력)
+function leap_oldsolar(year){return ((year % 4) == 0);}
+
 // 양력 날짜를 율리우스 적일로 변환
 function solar2JD(year,month,day){
  if(month <= 2){
