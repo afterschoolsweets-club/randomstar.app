@@ -899,8 +899,6 @@ function initDateCalc(){
   mon.value = m;
   months.add(mon);
  }
- 
- setInterval(function(){dispDateNow();},500);
 
  initSelectBase();
  initSelectDest();
