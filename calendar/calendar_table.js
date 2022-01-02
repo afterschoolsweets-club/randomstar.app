@@ -591,7 +591,7 @@ function dateDiff00(){
  else{document.getElementById("result_00").innerHTML = ""+weekdayStr[baseWeekday]+"요일이며, 기준일시까지는 "+(Math.abs(diffDays))+"일"+((Math.abs(diffYears) >= 1 || Math.abs(diffMons) >= 1) ? diffYMD : "")+" 남았습니다.";}
 
  document.getElementById("result_jd").innerHTML = "율리우스 적일(積日): 제 "+Math.ceil(baseDayCount)+"일";
- document.getElementById("result_jd").innerHTML += " (만 "+fracDayCount.toFixed(5)+"일, 서력 "+((baseDateY >= 1) ? "기원 "+baseDateY : "기원전 "+(1+Math.abs(baseDateY)))+"년의 "+yeardays(baseDateY,baseDateM,baseDateD)+"번째 날)";
+ document.getElementById("result_jd").innerHTML += " (만 "+fracDayCount.toFixed(5)+"일)";
  if(baseDateChecksum >= 15821015){document.getElementById("result_ly").innerHTML = "윤년 여부: "+(leap_solar(baseDateY) ? "윤년 (366일)" : "평년 (365일)");}
  else{document.getElementById("result_ly").innerHTML = "윤년 여부: "+(leap_oldsolar(baseDateY) ? "윤년 (366일)" : "평년 (365일)");}
  document.getElementById("result_ut").innerHTML = "유닉스 시간 (초): "+uTime+" ("+((uTime < 0) ? "-" : "")+"0x"+Math.abs(uTime).toString(16)+", 1970년 1월 1일 0시로부터 "+Math.abs(uTimeDayCount.toFixed(5))+"일 "+((uTime < 0) ? "이전" : "경과")+")";
