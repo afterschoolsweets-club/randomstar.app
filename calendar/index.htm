@@ -64,64 +64,64 @@
  <div id="cal_monthname"></div>
  <div id="cal_table"></div>
  <br />
-</div>
 
-<hr style="width: 100%;" />
-
-<div id="calcfield">
- <table style="width: 36rem; font-size: 1em; border: 1px solid #000000; margin: auto;">
-  <tr>
-   <td colspan="2">
-    <div id="basedate_in">
-     기준일시:
-     <input type="number" id="date_base_year" min="-100000" max="100000" style="width: 3.5rem;" onchange="initSelectBase();" />년
-     <select id="date_base_month" onchange="initSelectBase();"></select>월
-     <select id="date_base_day" onchange="initSelectBase();"></select>일
-     <input type="number" id="date_base_hours" min="0" max="23" style="width: 2rem;" onchange="initSelectBase();" />시
-     <input type="number" id="date_base_mins" min="0" max="59" style="width: 2rem;" onchange="initSelectBase();" />분
-     <input type="number" id="date_base_secs" min="0" max="59" style="width: 2rem;" onchange="initSelectBase();" />초
-    </div>
-    <div id="result_00"></div>
-    <input type="checkbox" id="is_startingday" onchange="initSelectBase();" checked="checked" /><label for="is_startingday">기준일을 1일로 하여 계산</label>
-    <button onclick="setToday();">초기화</button>
-   </td>
-  </tr>
- <tr>
-  <td width="50%">기준일로부터 <input type="number" id="date_after" min="1" max="10000000" style="width: 3.5rem;" onchange="dateDiff01();" /><span id="startingday_word"></span></td>
-  <td style="text-align: center;"><input type="text" id="result_01" size="12" readonly="readonly" />입니다.</td>
- </tr>
- <tr>
-  <td>
-   <input type="number" id="date_dest_year" min="-100000" max="100000" style="width: 3.5rem;" onchange="initSelectDest();" />년
-   <select id="date_dest_month" onchange="initSelectDest();"></select>월
-   <select id="date_dest_day" onchange="initSelectDest();"></select>일<br />
-   <input type="number" id="date_dest_hours" min="0" max="23" style="width: 2rem;" onchange="initSelectDest();" />시
-   <input type="number" id="date_dest_mins" min="0" max="59" style="width: 2rem;" onchange="initSelectDest();" />분
-   <input type="number" id="date_dest_secs" min="0" max="59" style="width: 2rem;" onchange="initSelectDest();" />초는
-  </td>
-  <td style="text-align: center;">
-   기준일시에서 <input type="text" size="5" id="result_02a" style="width: 5rem;" readonly="readonly" /><span id="destday_word"></span> 혹은<br />
-   <input type="text" size="24" id="result_02b" size="8" readonly="readonly" /><span id="desttime_word"></span>입니다.
- </td>
- </tr>
- <tr>
-  <td>기준일로부터 D-<input type="number" id="date_before" min="1" max="100000000" style="width: 3.5rem;" onchange="dateDiff03();" />은(는)</td>
-  <td style="text-align: center;"><input type="text" id="result_03" size="8" readonly="readonly" />입니다.</td>
- </tr>
-  <td colspan="2">
-   <div id="date_info_details" style="text-align: center; font-weight: bold;">기준일시에 대한 상세정보</div>
-   <ul style="list-style-type: none;">
-    <li class="detailsitem"><span id="result_jd"></span></li>
-    <li class="detailsitem"><span id="result_ly"></span></li>
-    <li class="detailsitem"><span id="result_ut"></span></li>
-    <li class="detailsitem"><span id="result_ld" style="display: none;"></span></li>
-    <li class="detailsitem"><span id="result_co"></span></li>
-    <li class="detailsitem"><span id="result_lc"></span></li>
-    <li class="detailsitem"><span id="result_lu"></span></li>
-   </ul>
-  </td>
- </tr>
-</table>
+ <hr style="width: 100%;" />
+ <h1>기념일(날짜) 계산</h1>
+ <div id="calcfield">
+  <table style="width: 36rem; font-size: 1em; border: 1px solid #000000; margin: auto;">
+   <tr>
+    <td colspan="2">
+     <div id="basedate_in">
+      기준일시:
+      <input type="number" id="date_base_year" min="-100000" max="100000" style="width: 3.5rem;" onchange="initSelectBase();" />년
+      <select id="date_base_month" onchange="initSelectBase();"></select>월
+      <select id="date_base_day" onchange="initSelectBase();"></select>일
+      <input type="number" id="date_base_hours" min="0" max="23" style="width: 2rem;" onchange="initSelectBase();" />시
+      <input type="number" id="date_base_mins" min="0" max="59" style="width: 2rem;" onchange="initSelectBase();" />분
+      <input type="number" id="date_base_secs" min="0" max="59" style="width: 2rem;" onchange="initSelectBase();" />초
+     </div>
+     <div id="result_00"></div>
+     <input type="checkbox" id="is_startingday" onchange="initSelectBase();" checked="checked" /><label for="is_startingday">기준일을 1일로 하여 계산</label>
+     <button onclick="setToday();">초기화</button>
+    </td>
+   </tr>
+   <tr>
+    <td width="50%">기준일로부터 <input type="number" id="date_after" min="1" max="10000000" style="width: 3.5rem;" onchange="dateDiff01();" /><span id="startingday_word"></span></td>
+    <td style="text-align: center;"><input type="text" id="result_01" size="12" readonly="readonly" />입니다.</td>
+   </tr>
+   <tr>
+    <td>
+     <input type="number" id="date_dest_year" min="-100000" max="100000" style="width: 3.5rem;" onchange="initSelectDest();" />년
+     <select id="date_dest_month" onchange="initSelectDest();"></select>월
+     <select id="date_dest_day" onchange="initSelectDest();"></select>일<br />
+     <input type="number" id="date_dest_hours" min="0" max="23" style="width: 2rem;" onchange="initSelectDest();" />시
+     <input type="number" id="date_dest_mins" min="0" max="59" style="width: 2rem;" onchange="initSelectDest();" />분
+     <input type="number" id="date_dest_secs" min="0" max="59" style="width: 2rem;" onchange="initSelectDest();" />초는
+    </td>
+    <td style="text-align: center;">
+     기준일시에서 <input type="text" size="5" id="result_02a" style="width: 5rem;" readonly="readonly" /><span id="destday_word"></span> 혹은<br />
+     <input type="text" size="24" id="result_02b" size="8" readonly="readonly" /><span id="desttime_word"></span>입니다.
+    </td>
+   </tr>
+   <tr>
+    <td>기준일로부터 D-<input type="number" id="date_before" min="1" max="100000000" style="width: 3.5rem;" onchange="dateDiff03();" />은(는)</td>
+    <td style="text-align: center;"><input type="text" id="result_03" size="8" readonly="readonly" />입니다.</td>
+   </tr>
+    <td colspan="2">
+     <div id="date_info_details" style="text-align: center; font-weight: bold;">기준일시에 대한 상세정보</div>
+     <ul style="list-style-type: none;">
+      <li class="detailsitem"><span id="result_jd"></span></li>
+      <li class="detailsitem"><span id="result_ly"></span></li>
+      <li class="detailsitem"><span id="result_ut"></span></li>
+      <li class="detailsitem"><span id="result_ld" style="display: none;"></span></li>
+      <li class="detailsitem"><span id="result_co"></span></li>
+      <li class="detailsitem"><span id="result_lc"></span></li>
+      <li class="detailsitem"><span id="result_lu"></span></li>
+     </ul>
+    </td>
+   </tr>
+  </table>
+ </div>
 </div>
 
 <hr style="width: 100%;" />
