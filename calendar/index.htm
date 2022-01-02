@@ -71,7 +71,7 @@
 <div id="calcfield">
  <table style="width: 36rem; border: 1px solid #000000; margin: auto;">
   <tr>
-   <th colspan="2">
+   <td colspan="2">
     <div id="basedate_in">
      기준일시:
      <input type="number" id="date_base_year" min="-100000" max="100000" onchange="initSelectBase();" />년
@@ -84,28 +84,28 @@
     <div id="result_00"></div>
     <input type="checkbox" id="is_startingday" onchange="initSelectBase();" checked="checked" /><label for="is_startingday">기준일을 1일로 하여 계산</label>
     <button onclick="setToday();">초기화</button>
-   </th>
+   </td>
   </tr>
  <tr>
-  <th width="50%">기준일로부터 <input type="number" id="date_after" min="1" max="10000000" onchange="dateDiff01();" /><span id="startingday_word"></span></th>
+  <td width="50%">기준일로부터 <input type="number" id="date_after" min="1" max="10000000" onchange="dateDiff01();" /><span id="startingday_word"></span></td>
   <td style="text-align: center;"><input type="text" id="result_01" size="12" readonly="readonly" />입니다.</td>
  </tr>
  <tr>
-  <th>
+  <td>
    <input type="number" id="date_dest_year" min="-100000" max="100000" onchange="initSelectDest();" />년
    <select id="date_dest_month" onchange="initSelectDest();"></select>월
    <select id="date_dest_day" onchange="initSelectDest();"></select>일<br />
    <input type="number" id="date_dest_hours" min="0" max="23" onchange="initSelectDest();" />시
    <input type="number" id="date_dest_mins" min="0" max="59" onchange="initSelectDest();" />분
    <input type="number" id="date_dest_secs" min="0" max="59" onchange="initSelectDest();" />초는
-  </th>
+  </td>
   <td style="text-align: center;">
    기준일시에서 <input type="text" size="5" id="result_02a" readonly="readonly" /><span id="destday_word"></span> 혹은<br />
    <input type="text" size="24" id="result_02b" readonly="readonly" /><span id="desttime_word"></span>입니다.
  </td>
  </tr>
  <tr>
-  <th>기준일로부터 D-<input type="number" id="date_before" min="1" max="100000000" onchange="dateDiff03();" />은(는)</th>
+  <td>기준일로부터 D-<input type="number" id="date_before" min="1" max="100000000" onchange="dateDiff03();" />은(는)</td>
   <td style="text-align: center;"><input type="text" id="result_03" size="12" readonly="readonly" />입니다.</td>
  </tr>
   <td colspan="2">
