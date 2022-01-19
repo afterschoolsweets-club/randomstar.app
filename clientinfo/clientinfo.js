@@ -295,7 +295,7 @@ var clientInfo = {
       var browserBrand, browserVersion;
       var browserType = "";
       for(b=0;b<brandInfo.length;b++){
-       if(brandInfo[b].brand.toLowerCase().match(/^(not)+(.+)(brand)+$/i) != -1){continue;}
+       if(brandInfo[b].brand.toLowerCase().match(/not(.+)a(.+)brand/i) != null){continue;}
        browserBrand = brandInfo[b].brand;
        browserVersion = brandInfo[b].version;
        browserType += `${browserBrand} (Version ${browserVersion})`;
