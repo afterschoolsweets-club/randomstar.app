@@ -293,7 +293,7 @@ var clientInfo = {
      document.getElementById("service_provider").innerHTML = providerinfo;
 
      document.getElementById("service_provider").style.cursor = "pointer";
-     document.getElementById("service_provider").onclick = window.open(`https://dnschecker.org/asn-whois-lookup.php?query=AS${s.asn}`,"asnlookup");
+     document.getElementById("service_provider").onclick = function(){window.open(`https://dnschecker.org/asn-whois-lookup.php?query=AS${s.asn}`,"asnlookup");};
 
      if(navigator.userAgentData){ // UA Data: 크로미엄(Chromium) 기반 브라우저에서 시범 지원 (90 버전 이상)
       var brandInfo = navigator.userAgentData.brands;
