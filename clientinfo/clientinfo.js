@@ -274,6 +274,7 @@ var clientInfo = {
      var phylocation_map = `https://www.google.com/maps/place/${s.latitude},${s.longitude}`;
      var phylocation_maplink = document.createElement("a");
      phylocation_maplink.href = phylocation_map;
+     phylocation_maplink.title = `정확도(Accuracy) : ~${s.accuracy}km`;
      phylocation_maplink.appendChild(document.createTextNode(phylocation_text));
 
      var providername = (s.asn == 64512) ? "알 수 없음 (Unknown)" : s.organization.replace(/^(AS[0-9]*\s)/i,"");
