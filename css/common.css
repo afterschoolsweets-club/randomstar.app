@@ -2,7 +2,10 @@
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap');
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css');
 
-body,h1,h2,h3,h4,h5,h6{font-family: "Pretendard", "Noto Sans KR", "Nanum Gothic", sans-serif !important;}
+body,h1,h2,h3,h4,h5,h6{
+font-family: "Pretendard", "Noto Sans KR", "Nanum Gothic", sans-serif !important;
+line-height: 1.73;
+}
 
 span{
 color: #282828;
