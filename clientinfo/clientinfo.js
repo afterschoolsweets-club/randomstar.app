@@ -293,7 +293,7 @@ var clientInfo = {
 
      var providerinfo_link = document.createElement("a");
      providerinfo_link.href = `https://dnschecker.org/asn-whois-lookup.php?query=AS${s.asn}`;
-     providerinfo_link.appendChild(providerinfo);
+     providerinfo_link.appendChild(document.createTextNode(providerinfo));
      document.getElementById("service_provider").innerHTML = "";
      document.getElementById("service_provider").appendChild(providerinfo_link);
 
