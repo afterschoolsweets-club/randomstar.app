@@ -7,11 +7,22 @@
   <link rel="stylesheet" type="text/css" href="./css/style.css" />
   <link rel="stylesheet" type="text/css" href="./css/flag-icon.min.css" />
 </head>
-<body id="mainbody" onload="clientInfo.showInfo();">
+<body id="mainbody">
  <div id="containerbody">
+  <h3>이 도구에 대하여 (About this Tool)</h3>
+  <p>
+   현재 자신이 접속한 <a href="https://ko.wikipedia.org/wiki/IP_%EC%A3%BC%EC%86%8C">IP 주소</a> 및 이와 관련된 정보들(예: <abbr title="인터넷 서비스 제공자 (Internet Service Provider)">ISP</abbr>, 접속 지역 등)을 확인할 수 있는 도구입니다.<br />
+   해당 정보는 <a href="https://www.geojs.io/">GeoJS.io</a>가 제공하고 있으며, 정보 확인을 위해 브라우저에서 자바스크립트를 활성화시켜주어야 합니다.
+  </p>
+
+  <p>
+   This website is a tool for checking your <a href="https://en.wikipedia.org/wiki/IP_address">IP address</a> and its related informations(such as <abbr title="Internet Service Provider">ISP</abbr>, Geolocation, etc.)<br />
+   The datas are provided by <a href="https://www.geojs.io/">GeoJS.io</a>, and you must activate JS(JavaScript) on your web browser to use this tool.
+  </p>
+
   <h3>IP 주소란?</h3>
   <p>
-   인터넷 상에서 특정한 기기(컴퓨터 등)을 식별하기 위해 사용하는 고유한 주소입니다. 그 약어(<b>I</b>nternet <b>P</b>rotocol)에서 보듯, 이 주소가 없으면 인터넷을 사용할 수 없습니다. 현대 인터넷에 쓰이는 IP 주소는 크게 두가지 물리적 규약(IPv4 및 IPv6)으로 나뉘어집니다.<br />
+   <b>IP 주소</b>는 인터넷 상에서 특정한 기기(컴퓨터 등)을 식별하기 위해 사용하는 고유한 주소입니다. 그 약어(<b>I</b>nternet <b>P</b>rotocol)에서 보듯, 이 주소가 없으면 인터넷을 사용할 수 없습니다. 현대 인터넷에 쓰이는 IP 주소는 크게 두가지 물리적 규약(IPv4 및 IPv6)으로 나뉘어집니다.<br />
    <br />
    <b>IPv4</b>는 <b>현재 쓰이고 있는 가장 일반적인 경우</b>로서 이론상 <b>최대 2<sup>32</sup>(약 42억 9500만)개</b>의 주소 할당이 가능하며 0에서 255(=2<sup>8</sup>-1) 까지의 숫자를 4번 사용하여 최대 12자리로 구성되어 있고 크게 <b>공인 IP</b>와 <b>사설(내부) IP</b>로 나뉘어집니다.
    <ul style="font-size: 0.875em;"> 
@@ -22,10 +33,10 @@
    <br />
    자세한 사항은 위키백과 <a href="https://ko.wikipedia.org/wiki/IPv4">'IPv4' 문서</a> 및 <a href="https://ko.wikipedia.org/wiki/IPv6">'IPv6' 문서</a>를 각각 참고하시기 바랍니다.
   </p>
-
+  
   <h3>What's IP Address?</h3>
   <p>
-   IP(Internet Protocol) is type of address that used to identifying certain devices(eg. personal computers) on networks such as the Internet. As the name(<i><b>I</b>nternet <b>P</b>rotocol</i>) shows, all devices without IP address can't be connected the network. IP addresses used in modern Internet are divided into two versions(IPv4 and IPv6).<br />
+   <b>IP(Internet Protocol) address</b> is type of address that used to identifying certain devices(eg. personal computers) on networks such as the Internet. As the name(<i><b>I</b>nternet <b>P</b>rotocol</i>) shows, all devices without IP address can't be connected the network. IP addresses used in modern Internet are divided into two versions(IPv4 and IPv6).<br />
    <br />
    <b>IPv4</b> is the most common type of version of IP addresses, it can be allocated up to <b>2<sup>32</sup>(about 4.3 billion) addresses</b>, and physically composed of four pieces of decimal numbers from 0 to 255(=2<sup>8</sup>-1). and logically divided into <b>Public IP</b> and <b>Private(Internal) IP</b> addresses.
    <ul style="font-size: 0.875em;">
@@ -36,6 +47,13 @@
    <br />
    For more details, please refer to Wikipedia pages on <a href="https://en.wikipedia.org/wiki/IPv4">'IPv4'</a> and <a href="https://en.wikipedia.org/wiki/IPv6">'IPv6'</a>.
   </p>
+
+  <h3>관련 정보 (Related Resources)</h3>
+  <ul>
+   <li>[한국어] <a href="https://xn--3e0bx5euxnjje69i70af08bea817g.xn--3e0b707e/jsp/resources/asInfo.jsp">자율 시스템(AS) 및 망식별번호(ASN) 설명</a> (한국인터넷정보센터 KRNIC)</li>
+   <li>[English] <a href="https://www.thousandeyes.com/learning/glossary/as-autonomous-system">What are Autonomous System Numbers (ASN)?</a> (Cisco ThousandEyes)</li>
+  </ul>
+
   <hr style="width: 100%;" />
 
   <p id="menulinks"><a href="/">메인 페이지로 (Back to the Main Website)</a> / <a href="./">프로그램 메인으로 (Home)</a></p>
