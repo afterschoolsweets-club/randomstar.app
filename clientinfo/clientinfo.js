@@ -277,7 +277,7 @@ var clientInfo = {
      phylocation_maplink.title = `정확도(Accuracy) : ~${s.accuracy}km`;
      phylocation_maplink.appendChild(document.createTextNode(phylocation_text));
 
-     var providername = (s.asn == 64512) ? "알 수 없음 (Unknown)" : s.organization.replace(/^(AS[0-9]*\s)/i,"");
+     var providername = (s.asn == 64512) ? "알 수 없음 (Unknown)" : s.organization_name;
      var asnum = (s.asn == 64512) ? "N/A" : s.asn;
 
      var providerinfo = `${providername} (ASN: ${asnum})`;
