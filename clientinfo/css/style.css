@@ -38,6 +38,7 @@ abbr{cursor: help;}
  margin: auto;
  width: 960px;
  max-width: 100%;
+ padding: 0.5em;
  overflow: auto;
  background-color: #ffffff;
 }
