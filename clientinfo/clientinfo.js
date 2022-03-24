@@ -283,6 +283,7 @@ var clientInfo = {
      var providerinfo = `${providername} (ASN: ${asnum})`;
 
      var countryflag = document.getElementById("country_flag");
+     countryflag.className = "";
      countryflag.classList.add("flag-icon");
      countryflag.classList.add(`flag-icon-${cc}`);
 
