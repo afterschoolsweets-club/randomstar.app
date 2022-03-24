@@ -32,11 +32,7 @@ abbr{cursor: help;}
  text-align: center;
 }
 
-#mainbody{
- width: 96%;
- background-color: #f6f6f6;
- margin: auto;
-}
+#mainbody{background-color: #f6f6f6;}
 
 #containerbody{
  margin: auto;
