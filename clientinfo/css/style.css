@@ -39,6 +39,9 @@ abbr{cursor: help;}
 }
 
 #containerbody{
+ margin: auto;
+ width: 720px;
+ max-width: 96%;
  padding: 1em 2em;
  overflow: auto;
  background-color: #ffffff;
