@@ -137,13 +137,21 @@ function drawCalendarTable(year,month,drawPositionTable,drawPositionMonth){
     else{dateDisplay.appendChild(document.createTextNode(day));}
     dateChecksum = ((month + 1) * 100)+day;
     var lunarDate = solar2lunar(year,month+1,day);
-    var lunarLeap = lunarDate[3];
     dayCount = yeardays(year,month+1,day);
     if(lunarDate != false){
      var lunarDisplay = document.createElement("sub");
      lunarDisplay.style.fontSize = "60%";
      if(lunarDate[3] == 1){lunarDisplay.appendChild(document.createTextNode("(윤)"+lunarDate[1]+"."+lunarDate[2]));}
      else{lunarDisplay.appendChild(document.createTextNode(lunarDate[1]+"."+lunarDate[2]));}
+
+     // 손없는 날 표시 기능
+     var isDisplayLuckyDays = document.getElementById("display_luckydays").checked; 
+     if(isDisplayLuckyDays !== false && ((lunarDate[2] % 10) >= 9)){
+      var luckyDayMark = document.createElement("sup");
+      luckyDayMark.appendChild(document.createTextNode("*"));
+      lunarDisplay.appendChild(luckydayMark);
+     }
+
      dateDisplay.appendChild(document.createElement("br"));
      dateDisplay.appendChild(lunarDisplay);
     }
