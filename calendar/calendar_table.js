@@ -149,7 +149,7 @@ function drawCalendarTable(year,month,drawPositionTable,drawPositionMonth){
      if((isDisplayLuckyDays !== false) && ((lunarDate[2] % 10) >= 9 || (lunarDate[2] % 10) == 0)){
       var luckyDayMark = document.createElement("sup");
       luckyDayMark.appendChild(document.createTextNode("*"));
-      lunarDisplay.appendChild(luckyDayMark);
+      dateDisplay.appendChild(luckyDayMark);
      }
 
      dateDisplay.appendChild(document.createElement("br"));
