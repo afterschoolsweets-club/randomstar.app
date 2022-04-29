@@ -146,7 +146,7 @@ function drawCalendarTable(year,month,drawPositionTable,drawPositionMonth){
 
      // 손없는 날 표시 기능
      var isDisplayLuckyDays = document.getElementById("display_luckydays").checked; 
-     if((isDisplayLuckyDays !== false) && ((lunarDate[2] % 10) >= 9)){
+     if((isDisplayLuckyDays !== false) && ((lunarDate[2] % 10) >= 9 || (lunarDate[2] % 10) == 0)){
       var luckyDayMark = document.createElement("sup");
       luckyDayMark.appendChild(document.createTextNode("*"));
       lunarDisplay.appendChild(luckyDayMark);
