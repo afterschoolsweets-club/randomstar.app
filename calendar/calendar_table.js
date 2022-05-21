@@ -34,6 +34,9 @@ var koreanSolarPublicHolidayNames = {
 };
 
 var koreanProvisionalHolidays = {
+ 20170509 : "19대 대통령 선거",
+ 20180613 : "7차 지방선거",
+ 20200415 : "21대 국회의원 선거",
  20220309 : "20대 대통령 선거",
  20220601 : "8차 지방선거"
 };
