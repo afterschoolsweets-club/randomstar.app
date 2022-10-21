@@ -456,7 +456,7 @@ function getCoordInfo(){
       document.getElementById("coordinates_links").innerHTML += "<br />";
 
       document.getElementById("coordinates_address").innerHTML = "<b>주소지</b>: 불러오는 중..."
-      r.open("GET",`https://api.yukinaserver.net/geolookup/local?coord_lat=${curLat}&coord_long=${curLong}`);
+      r.open("GET",`https://api.rinaserver.info/geolookup/local?coord_lat=${curLat}&coord_long=${curLong}`);
       r.send();
      }else{ // 그 이외의 경우
       var r = new XMLHttpRequest();
@@ -477,7 +477,7 @@ function getCoordInfo(){
 
       document.getElementById("coordinates_links").innerHTML += "<br />";
       document.getElementById("coordinates_address").innerHTML = "<b>현재 지역</b>: 불러오는 중..."
-      r.open("GET",`https://api.yukinaserver.net/geolookup/global?coord_lat=${curLat}&coord_long=${curLong}`);
+      r.open("GET",`https://api.rinaserver.info/geolookup/global?coord_lat=${curLat}&coord_long=${curLong}`);
       r.send();
      }
     }
