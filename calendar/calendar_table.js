@@ -323,7 +323,7 @@ function showDateTimeNow(){
  var monthNameDisplay = document.createElement("td");
  monthNameDisplay.style.fontSize = "1.2em";
  monthNameDisplay.style.padding = d_drawPadding;
- monthNameDisplay.appendChild(document.createTextNode(yearNow+"년 "+monthNow+"월"));
+ monthNameDisplay.appendChild(document.createTextNode(`${yearNow}년 ${monthNow}월`));
  monthNameRow.appendChild(monthNameDisplay);
  
  var dayDisplay = document.createElement("td");
@@ -331,11 +331,14 @@ function showDateTimeNow(){
  dayDisplay.style.fontSize = d_fSize;
  dayDisplay.style.padding = d_drawPadding;
  dayDisplay.appendChild(document.createTextNode(dayNow));
+ var daySub = document.createElement("sub");
+ daySub.appendChild(document.createTextNode("일"));
+ dayDisplay.appendChild(daySub);
  dayRow.appendChild(dayDisplay);
 
  var weekdayDisplay = document.createElement("td");
  weekdayDisplay.style.fontSize = "1.2em";
- weekdayDisplay.appendChild(document.createTextNode(weekdayName[weekdayNow]+"요일"));
+ weekdayDisplay.appendChild(document.createTextNode(`${weekdayName[weekdayNow]}요일`));
  weekdayRow.appendChild(weekdayDisplay);
 
  dailyCalTable.appendChild(monthNameRow);
@@ -344,7 +347,7 @@ function showDateTimeNow(){
 
  var lunarDateDisplay = document.createElement("td");
  lunarDateDisplay.style.fontSize = "1.2em";
- lunarDateDisplay.appendChild(document.createTextNode("음. "+isLunarLeap+" "+lunarMonthNow+"월 "+lunarDayNow+"일"));
+ lunarDateDisplay.appendChild(document.createTextNode(`음. ${isLunarLeap} ${lunarMonthNow}월 ${lunarDayNow}일`));
  lunarDateDisplay.style.cursor = "help";
  lunarDateDisplay.title = `${sbYearNow} ${sbMonthNow} ${sbDayNow}`;
  lunarDateDisplay.addEventListener("click",function(){alert(`음력 간지 : ${sbYearNow} ${sbMonthNow} ${sbDayNow}`);});
