@@ -174,7 +174,7 @@ function drawCalendarTable(year,month,drawPositionTable,drawPositionMonth){
       dateDisplay.title = koreanSolarPublicHolidayNames[holidayChecksum];
       dateDisplay.addEventListener("click",function(){alert(`${month+1}월 ${holidayDate}일 : ${koreanSolarPublicHolidayNames[holidayChecksum]}`);});
      }
-     // 공휴일의 대체휴일 처리 (공휴일이면서 국경일인 경우에만 해당)
+     // 양력 공휴일의 대체휴일 처리
      if((substituteHolidays.indexOf(holidayChecksum-1) != -1 || substituteHolidays.indexOf(holidayChecksum-2) != -1) && q == 2){
       dateDisplay.style.color="#FF0000";
       dateDisplay.style.cursor = "help";
