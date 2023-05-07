@@ -331,8 +331,9 @@ function showDateTimeNow(){
  dayDisplay.style.fontSize = d_fSize;
  dayDisplay.style.padding = d_drawPadding;
  dayDisplay.appendChild(document.createTextNode(dayNow));
- var daySub = document.createElement("sub");
+ var daySub = document.createElement("span");
  daySub.appendChild(document.createTextNode("일"));
+ dayDisplay.style.fontSize = "1.5em";
  dayDisplay.appendChild(daySub);
  dayRow.appendChild(dayDisplay);
 
