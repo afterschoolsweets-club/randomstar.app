@@ -615,7 +615,7 @@ function solar2lunar(year,month,day){
  var y=gyear-1;
  var absoluteDay2=solar2JD(year,month,day)-DAY0000;
  var absoluteDay=absoluteDay2-absoluteDay1+1;
- for(i=0;i<=gyear-1583;i++){
+ for(i=0;i<=gyear-YEAR_MIN;i++){
   dt[i]=0;
   for(j=0;j<12;j++){
   switch(lunarMonthTab[i][j]){
@@ -685,7 +685,7 @@ function solar2lunar(year,month,day){
 	}else{break;}
    }
   }while(true);
-  p+=1583;
+  p+=YEAR_MIN;
   q++;
   var r=absoluteDay;
   var lyear=p;
@@ -709,7 +709,7 @@ function solar2lunar(year,month,day){
 function lunar2solar(year,month,day,isLeap){
   var lyear=((year >= YEAR_MIN) && (year <= YEAR_MAX)) ? year : 0;
   if(lyear == 0){return false;}
-  var y=lyear-1583;
+  var y=lyear-YEAR_MIN;
   var m=month-1;
   var mm;
   var y2;
