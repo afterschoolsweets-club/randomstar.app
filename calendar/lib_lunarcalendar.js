@@ -3,9 +3,9 @@
 **************************************************/
 var DAY0000=1721424.5; // 서기 기원전 1년 12월 31일에 해당하는 율리우스 적일
 var SOLAR_EPOCH=1721425.5; // 서기 1년 1월 1일에 해당하는 율리우스 적일
-var YEAR_MIN=1600; // 최소 허용연도
+var YEAR_MIN=1583; // 최소 허용연도
 var YEAR_MAX=2100; // 최대 허용연도
-var LUNAR_EPOCH=2305492.5;
+var LUNAR_EPOCH=2299261.5;
 var LOWER_LIMIT=LUNAR_EPOCH;
 var UPPER_LIMIT=2488461.5;
 
@@ -39,8 +39,25 @@ var kowkdays=new Array("일","월","화","수","목","금","토");
 * 또한 중국 및 베트남의 음력도 해당 연도의 음력 11월에 윤달을 두고 있다.
 ******************************************************************/
 
-// 1600년 ~ 2100년까지의 자료.
+// 1583년 ~ 2100년까지의 자료.
 var lunarMonthTab=new Array(
+          [1, 5, 1, 2, 1, 1, 2, 1, 2, 2, 2, 2],  /* 1583 */
+          [1, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 2],
+          [1, 2, 2, 1, 1, 2, 1, 1, 5, 2, 2, 1],  /* 1585 */
+          [2, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1],
+          [2, 2, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2],
+          [1, 2, 2, 1, 2, 4, 2, 1, 2, 1, 1, 2],
+          [1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 2],
+          [1, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1],
+          [2, 1, 4, 1, 1, 2, 1, 2, 2, 2, 2, 1],  /* 1591 */
+          [2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 2, 1],
+          [2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 5, 2],
+          [2, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 2],
+          [2, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1],  /* 1595 */
+          [2, 2, 1, 2, 2, 1, 2, 3, 2, 1, 2, 1],
+          [2, 1, 2, 2, 1, 2, 1, 1, 2, 2, 1, 2],
+          [1, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 2],
+          [1, 1, 2, 3, 2, 2, 1, 2, 2, 1, 2, 2],
           [1, 1, 2, 1, 1, 2, 1, 2, 2, 2, 1, 2],  /* 1600 */
           [2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2],  /* 1601 */ // 0
           [2, 5, 1, 2, 1, 1, 2, 2, 1, 1, 2, 2],
@@ -615,7 +632,7 @@ function solar2lunar(year,month,day){
  var y=gyear-1;
  var absoluteDay2=solar2JD(year,month,day)-DAY0000;
  var absoluteDay=absoluteDay2-absoluteDay1+1;
- for(i=0;i<=gyear-YEAR_MIN;i++){
+ for(i=0;i<=gyear-1583;i++){
   dt[i]=0;
   for(j=0;j<12;j++){
   switch(lunarMonthTab[i][j]){
@@ -685,7 +702,7 @@ function solar2lunar(year,month,day){
 	}else{break;}
    }
   }while(true);
-  p+=YEAR_MIN;
+  p+=1583;
   q++;
   var r=absoluteDay;
   var lyear=p;
@@ -709,7 +726,7 @@ function solar2lunar(year,month,day){
 function lunar2solar(year,month,day,isLeap){
   var lyear=((year >= YEAR_MIN) && (year <= YEAR_MAX)) ? year : 0;
   if(lyear == 0){return false;}
-  var y=lyear-YEAR_MIN;
+  var y=lyear-1583;
   var m=month-1;
   var mm;
   var y2;
