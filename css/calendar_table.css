@@ -1,3 +1,6 @@
+body{max-width: 96%;}
+
+
 #cal_table{overflow: auto;}
 
 #cal_monthname{

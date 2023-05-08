@@ -1,4 +1,7 @@
-body{font-size: 0.75rem;}
+body{
+font-size: 0.75rem;
+max-width: 96%;
+}
 
 abbr{cursor: help;}
 
