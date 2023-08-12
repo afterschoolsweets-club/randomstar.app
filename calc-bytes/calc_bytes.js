@@ -24,7 +24,7 @@
 
     var decBytes = new Number(rawDecBytes * decUnit);
 
-    document.getElementById("bytes_binary").value = (decBytes / binUnit).toFixed(16);
+    document.getElementById("bytes_binary").value = decBytes / binUnit;
    }else if(document.getElementById("bin2dec").checked == true){
     document.getElementById("bytes_decimal").disabled = true;
     document.getElementById("bytes_binary").disabled = false;
@@ -34,7 +34,7 @@
 
     var binBytes = new Number(rawBinBytes * binUnit);
 
-    document.getElementById("bytes_decimal").value = (binBytes / decUnit).toFixed(16);
+    document.getElementById("bytes_decimal").value = binBytes / decUnit;
    }
   },
   otherResults : function(){
@@ -46,6 +46,9 @@
    var rawDecUnit = document.getElementById("decimal_unit").value;
    var rawBinUnit = document.getElementById("binary_unit").value;
 
+   var baseBinUnit = Math.pow(1024,new Number(rawBinUnit));
+   var baseDecUnit = Math.pow(1000,new Number(rawDecUnit));
+
    var unitDelta = new Number(rawDecUnit)-new Number(rawBinUnit);
 
    if(document.getElementById("dec2bin").checked == true){
@@ -53,11 +56,9 @@
     resultList.style.listStyleType = "none";
     var binaryUnits = document.getElementById("binary_unit").options.length;
 
-    var baseBinUnit = Math.pow(1024,new Number(rawBinUnit));
-    var baseUnitDelta = Math.pow(1024,unitDelta);
-
     for(b=0;b<binaryUnits;b++){
-     var rawResult = ((baseUnitDelta * (rawDecBytes * baseBinUnit)) / Math.pow(1024,b)).toFixed(16);
+     var rawResult = ((rawDecBytes * baseDecUnit) / Math.pow(1024,b));
+     rawResult = (b == 0) ? rawResult : rawResult.toFixed(16);
      var resultItem = document.createElement("li");
      if(b == new Number(rawBinUnit)){resultItem.style.fontWeight = "bold";}
      resultItem.appendChild(document.createTextNode(`${rawResult} ${unitsToConvertB[b]}`));
@@ -69,11 +70,9 @@
     resultList.style.listStyleType = "none";
     var decimalUnits = document.getElementById("decimal_unit").options.length;
 
-    var baseDecUnit = Math.pow(1000,new Number(rawDecUnit));
-    var baseUnitDelta = Math.pow(1024,unitDelta);
-
     for(d=0;d<decimalUnits;d++){
-     var rawResult = ((baseUnitDelta * (rawBinBytes * baseDecUnit)) / Math.pow(1000,d)).toFixed(16);
+     var rawResult = ((rawBinBytes * baseBinUnit) / Math.pow(1000,d));
+     rawResult = (b == 0) ? rawResult : rawResult.toFixed(16);
      var resultItem = document.createElement("li");
      if(d == new Number(rawDecUnit)){resultItem.style.fontWeight = "bold";}
      resultItem.appendChild(document.createTextNode(`${rawResult} ${unitsToConvertD[d]}`));
