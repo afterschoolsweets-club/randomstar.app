@@ -1,8 +1,8 @@
 
 
 
- var unitsToConvertB = ["Bytes","KiB","MiB","GiB","TiB","PiB","EiB"];
- var unitsToConvertD = ["Bytes","kB","MB","GB","TB","PB","EB"];
+ var unitsToConvertB = ["Bytes","KiB","MiB","GiB","TiB","PiB","EiB","ZiB","YiB"];
+ var unitsToConvertD = ["Bytes","kB","MB","GB","TB","PB","EB","ZB","YB"];
 
  var convertUnit = {
   convert : function(){
