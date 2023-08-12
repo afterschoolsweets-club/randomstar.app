@@ -1,0 +1,14 @@
+input,select{
+ color: rgba(68,85,221,1);
+ background-color: rgba(255,255,255,1);
+ border: 1px solid;
+ font-family: inherit;
+}
+
+input:disabled{
+ color: rgba(136,136,136,1);
+ background-color: rgba(255,255,255,1);
+ border: 1px solid;
+}
+
+#bytes_decimal,#bytes_binary,#decimal_unit,#binary_unit{font-size: 1.25em;}
