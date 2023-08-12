@@ -54,9 +54,13 @@
     resultList.style.listStyleType = "none";
     var binaryUnits = document.getElementById("binary_unit").options.length;
 
+    var enteredUnit = document.createElement("li");
+    enteredUnit.appendChild(document.createTextNode(`${rawDecBytes} ${unitsToConvertD[rawDecUnit]}`));
+    resultList.appendChild(enteredUnit);
+
     for(b=0;b<binaryUnits;b++){
      var rawResult = ((rawDecBytes * baseDecUnit) / Math.pow(1024,b));
-     rawResult = (b == 0) ? rawResult : rawResult.toFixed(16);
+     rawResult = (b == 0) ? rawResult : rawResult.toFixed(b * 2);
      var resultItem = document.createElement("li");
      if(b == new Number(rawBinUnit)){resultItem.style.fontWeight = "bold";}
      resultItem.appendChild(document.createTextNode(`${rawResult} ${unitsToConvertB[b]}`));
@@ -68,9 +72,13 @@
     resultList.style.listStyleType = "none";
     var decimalUnits = document.getElementById("decimal_unit").options.length;
 
+    var enteredUnit = document.createElement("li");
+    enteredUnit.appendChild(document.createTextNode(`${rawBinBytes} ${unitsToConvertB[rawBinUnit]}`));
+    resultList.appendChild(enteredUnit);
+
     for(d=0;d<decimalUnits;d++){
      var rawResult = ((rawBinBytes * baseBinUnit) / Math.pow(1000,d));
-     rawResult = (d == 0) ? rawResult : rawResult.toFixed(16);
+     rawResult = (d == 0) ? rawResult : rawResult.toFixed(d * 2);
      var resultItem = document.createElement("li");
      if(d == new Number(rawDecUnit)){resultItem.style.fontWeight = "bold";}
      resultItem.appendChild(document.createTextNode(`${rawResult} ${unitsToConvertD[d]}`));
