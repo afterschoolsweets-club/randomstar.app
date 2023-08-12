@@ -21,7 +21,7 @@
   </li>
   <li id="decimal_in">
    표기된 용량<br />
-   <input type="number" id="bytes_decimal" oninput="convertUnit.convert();" value="1000" placeholder="1000" />
+   <input type="number" id="bytes_decimal" oninput="convertUnit.convert();" style="width: 5em;" value="1000" placeholder="1000" />
    <select id="decimal_unit" onchange="convertUnit.convert();">
     <option value="0">Bytes (바이트)</option>
     <option value="1">kB (킬로바이트)</option>
@@ -34,7 +34,7 @@
   </li>
   <li id="binary_in">
    표시되는 용량<br />
-   <input type="number" id="bytes_binary" oninput="convertUnit.convert();" value="0" placeholder="1024" />
+   <input type="number" id="bytes_binary" oninput="convertUnit.convert();" style="width: 5em;" value="0" placeholder="1024" />
    <select id="binary_unit" onchange="convertUnit.convert();">
     <option value="0">Bytes (바이트)</option>
     <option value="1">KiB (KB)</option>
