@@ -55,7 +55,7 @@
     var binaryUnits = document.getElementById("binary_unit").options.length;
 
     var enteredUnit = document.createElement("li");
-    enteredUnit.appendChild(document.createTextNode(`${rawDecBytes} ${unitsToConvertD[rawDecUnit]}`));
+    enteredUnit.appendChild(document.createTextNode(`${rawDecBytes} ${unitsToConvertD[rawDecUnit]} = `));
     resultList.appendChild(enteredUnit);
 
     for(b=0;b<binaryUnits;b++){
@@ -73,7 +73,7 @@
     var decimalUnits = document.getElementById("decimal_unit").options.length;
 
     var enteredUnit = document.createElement("li");
-    enteredUnit.appendChild(document.createTextNode(`${rawBinBytes} ${unitsToConvertB[rawBinUnit]}`));
+    enteredUnit.appendChild(document.createTextNode(`${rawBinBytes} ${unitsToConvertB[rawBinUnit]} = `));
     resultList.appendChild(enteredUnit);
 
     for(d=0;d<decimalUnits;d++){
