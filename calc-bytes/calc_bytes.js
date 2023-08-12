@@ -49,8 +49,6 @@
    var baseBinUnit = Math.pow(1024,new Number(rawBinUnit));
    var baseDecUnit = Math.pow(1000,new Number(rawDecUnit));
 
-   var unitDelta = new Number(rawDecUnit)-new Number(rawBinUnit);
-
    if(document.getElementById("dec2bin").checked == true){
     var resultList = document.createElement("ul");
     resultList.style.listStyleType = "none";
@@ -72,7 +70,7 @@
 
     for(d=0;d<decimalUnits;d++){
      var rawResult = ((rawBinBytes * baseBinUnit) / Math.pow(1000,d));
-     rawResult = (b == 0) ? rawResult : rawResult.toFixed(16);
+     rawResult = (d == 0) ? rawResult : rawResult.toFixed(16);
      var resultItem = document.createElement("li");
      if(d == new Number(rawDecUnit)){resultItem.style.fontWeight = "bold";}
      resultItem.appendChild(document.createTextNode(`${rawResult} ${unitsToConvertD[d]}`));
