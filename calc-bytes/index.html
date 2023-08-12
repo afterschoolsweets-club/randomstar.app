@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../css/calc_bytes.css" />
 <script type="text/javascript" src="calc_bytes.js"></script>
 </head>
-<body onload="convertUnit.convert();">
+<body onload="(function(){convertUnit.convert();convertUnit.otherResults();}).call(this);">
 
  <h2 style="text-align: center;">저장장치 실제 용량 계산</h2>
 
@@ -17,12 +17,12 @@
   아래 입력란에 표기된 용량을 입력하세요. 입력한 즉시 변환되어 표시됩니다.
  <ul style="list-style-type: none; line-height: 196%;">
   <li>
-   <input type="radio" name="unit_mode" id="dec2bin" onclick="convertUnit.convert();" checked="checked" /> <label for="dec2bin">표기된 용량을 표시되는 용량으로</label><br /><input type="radio" name="unit_mode" id="bin2dec" onclick="convertUnit.convert();" /> <label for="bin2dec">표시되는 용량에서 표기된 용량으로</label>
+   <input type="radio" name="unit_mode" id="dec2bin" onclick="(function(){convertUnit.convert();convertUnit.otherResults();}).call(this);" checked="checked" /> <label for="dec2bin">표기된 용량을 표시되는 용량으로</label><br /><input type="radio" name="unit_mode" id="bin2dec" onclick="(function(){convertUnit.convert();convertUnit.otherResults();}).call(this);" /> <label for="bin2dec">표시되는 용량에서 표기된 용량으로</label>
   </li>
   <li id="decimal_in">
    표기된 용량<br />
-   <input type="number" id="bytes_decimal" oninput="convertUnit.convert();" style="width: 5em;" value="1000" placeholder="1000" />
-   <select id="decimal_unit" onchange="convertUnit.convert();">
+   <input type="number" id="bytes_decimal" oninput="(function(){convertUnit.convert();convertUnit.otherResults();}).call(this);" style="width: 5em;" value="1000" placeholder="1000" />
+   <select id="decimal_unit" onchange="(function(){convertUnit.convert();convertUnit.otherResults();}).call(this);">
     <option value="0">Bytes (바이트)</option>
     <option value="1">kB (킬로바이트)</option>
     <option value="2">MB (메가바이트)</option>
@@ -34,8 +34,8 @@
   </li>
   <li id="binary_in">
    표시되는 용량<br />
-   <input type="number" id="bytes_binary" oninput="convertUnit.convert();" style="width: 5em;" value="0" placeholder="1024" />
-   <select id="binary_unit" onchange="convertUnit.convert();">
+   <input type="number" id="bytes_binary" oninput="(function(){convertUnit.convert();convertUnit.otherResults();}).call(this);" style="width: 5em;" value="0" placeholder="1024" />
+   <select id="binary_unit" onchange="(function(){convertUnit.convert();convertUnit.otherResults();}).call(this);">
     <option value="0">Bytes (바이트)</option>
     <option value="1">KiB (KB)</option>
     <option value="2">MiB (MB)</option>
@@ -47,6 +47,11 @@
   </li>
  </ul>
  </div>
+
+ <h4 style="text-align: center;">단위 변환표</h4>
+ <div id="other_results" style="text-align: center;"></div>
+
+ <hr style="width: 100%;" />
 
  <h3 style="text-align: center;">설명</h3>
 
